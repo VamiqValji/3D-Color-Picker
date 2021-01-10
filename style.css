@@ -23,18 +23,23 @@ canvas {
 
 .ui button {
   position: absolute;
-  top: 85%;
+  top: 75%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
   /* border: 0.2rem solid white; */
   border: none;
   border-radius: 3rem;
-  padding: 2rem;
+  padding: 1rem;
   background: black;
   font-size: 1.5em;
   transition: 0.25s;
   font-weight: 600;
+}
+
+.ui button.reset {
+  top: 85%;
+  padding: 1rem;
 }
 
 .ui button:hover {

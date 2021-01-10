@@ -8,7 +8,9 @@ const white = 0xffffff;
 const black = 0x000000;
 const green = 0x00ff00;
 
+let time;
 let startTime;
+let endTime;
 
 function init() {
   //SETUP
@@ -116,26 +118,43 @@ const moveCamera = (movementX, movementY) => {
   }
 };
 
+// let count = 0;
+// let resetMovementSpeed = 0.1;
+
 // setInterval(() => {
-//   if (startTime + 2000 < new Date().getTime()) { // < end time
-//     let count = 0;
-//     let resetMovementSpeed = 0.1;
+//   if (startTime + 2000 < new Date().getTime()) {
+//     const lerp = (x, y, a) => {
+//       return x * (1 - a) + y * a;
+//     };
 //     setInterval(() => {
-//       // if (camera.position.x > 0.5) {
+//       console.log("test");
+//       if (count <= 1 || count >= 0) {
+//         camera.position.x = lerp(camera.position.x, 0, count);
+//         console.log(count);
+//         console.log(lerp(camera.position.x, 0, count));
+//         count += 0.1;
+//       }
+
+//       // if (camera.position.x > 0.2) {
 //       //   camera.position.x -= resetMovementSpeed;
-//       // } else if (camera.position.x < 0.5) {
+//       // } else if (camera.position.x < 0.2) {
 //       //   camera.position.x += resetMovementSpeed;
 //       // }
-//       // if (camera.position.y > 0.5) {
+//       // if (camera.position.y > 0.2) {
 //       //   camera.position.y -= resetMovementSpeed;
-//       // } else if (camera.position.y < 0.5) {
+//       // } else if (camera.position.y < 0.2) {
 //       //   camera.position.y += resetMovementSpeed;
 //       // }
-//       camera.position.x = 0;
-//       camera.position.y = 0;
+//       // camera.position.x = 0;
+//       // camera.position.y = 0;
 //     }, 5);
 //   }
 // }, 2000);
+
+const resetPosition = () => {
+  camera.position.y = 0;
+  camera.position.x = 0;
+};
 
 const mouseMove = (e) => {
   // console.log(e.movementX);
