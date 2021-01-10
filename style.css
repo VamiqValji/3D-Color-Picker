@@ -9,11 +9,10 @@ canvas {
   height: 100%;
 }
 
-/* body {
-    font-family: sans-serif;
-    overflow: hidden;
+.ui button {
+  display: flex;
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-
-.scene, canvas {
-
-} */
