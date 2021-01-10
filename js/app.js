@@ -1,7 +1,8 @@
 //  ALWAYS NEEDS SCENE, RENDERER, AND CAMERA
 
-let scene, camera, renderer, cube, floor, ambientLight, pointLight;
 // global vars
+let scene, camera, renderer, cube, floor, ambientLight, pointLight; // three js vars
+let randomColor; // color changing var
 
 function init() {
   //SETUP
@@ -88,7 +89,13 @@ window.addEventListener("resize", onWindowResize, false);
 init();
 animate();
 
-const changeColor = () => {
-  console.log("test");
-  floor.material.color.setHex(0x4f0fff);
+const changeColor = (randColor) => {
+  floor.material.color.setHex(randColor);
+  cube.material.color.setHex(randColor);
+  renderer.setClearColor(parseInt(randColor), 1);
+};
+
+const newColor = () => {
+  randomColor = Math.floor(Math.random() * 16777215).toString(16);
+  changeColor(`0x${randomColor}`);
 };
