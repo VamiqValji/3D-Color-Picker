@@ -16,6 +16,8 @@ function init() {
   // fov, aspect ratio, doesnt display if object is this close,
   // doesnt display is object is this near
   renderer = new THREE.WebGLRenderer();
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
   renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -30,6 +32,7 @@ function init() {
     //   antialias: true,
   });
   cube = new THREE.Mesh(geometry, material);
+  cube.castShadow = true;
   cube.position.y = 0.5;
   scene.add(cube);
 
@@ -39,15 +42,24 @@ function init() {
     //   antialias: true,
   });
   let floor = new THREE.Mesh(geometry, material);
+  floor.receiveShadow = true;
   floor.position.y = -1;
   scene.add(floor);
 
   // LIGHTS
-  const light = new THREE.AmbientLight(0x404040, 2); // soft white light
+  //   const light = new THREE.AmbientLight(0x404040, 2); // soft white light
+  //   scene.add(light);
+  //   const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+  //   scene.add(directionalLight);
+  //   directionalLight.rotation.z = 30;
+  const light = new THREE.PointLight(0xffffff, 1, 100);
+  light.position.set(1, 3, 0);
+  light.castShadow = true; // default false
   scene.add(light);
-  const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
-  scene.add(directionalLight);
-  directionalLight.rotation.z = 30;
+
+  // helper
+  const helper = new THREE.CameraHelper(light.shadow.camera);
+  scene.add(helper);
 
   // camera
   camera.position.z = 5;
@@ -58,6 +70,8 @@ function animate() {
   // Animations here
   cube.rotation.x += 0.01;
   cube.rotation.y += 0.01;
+  //   camera.position.z -= 0.01;
+  //   camera.rotation.y -= 0.005;
   renderer.render(scene, camera);
 }
 
