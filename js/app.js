@@ -4,10 +4,11 @@ let scene, camera, renderer, cube;
 // global vars
 
 function init() {
+  //SETUP
   scene = new THREE.Scene();
 
   camera = new THREE.PerspectiveCamera(
-    90,
+    75,
     window.innerWidth / window.innerHeight,
     0.1,
     1000
@@ -20,6 +21,8 @@ function init() {
 
   document.body.appendChild(renderer.domElement);
 
+  // ENVIRONMENT
+
   // cube
   geometry = new THREE.BoxGeometry(2, 1, 1);
   material = new THREE.MeshLambertMaterial({
@@ -27,13 +30,24 @@ function init() {
     //   antialias: true,
   });
   cube = new THREE.Mesh(geometry, material);
+  cube.position.y = 0.5;
   scene.add(cube);
 
-  // light
+  geometry = new THREE.BoxGeometry(4, 0.3, 4);
+  material = new THREE.MeshLambertMaterial({
+    color: 0xffffff,
+    //   antialias: true,
+  });
+  let floor = new THREE.Mesh(geometry, material);
+  floor.position.y = -1;
+  scene.add(floor);
+
+  // LIGHTS
   const light = new THREE.AmbientLight(0x404040, 2); // soft white light
   scene.add(light);
   const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
   scene.add(directionalLight);
+  directionalLight.rotation.z = 30;
 
   // camera
   camera.position.z = 5;
