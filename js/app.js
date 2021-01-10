@@ -3,9 +3,12 @@
 // global vars
 let scene, camera, renderer, cube, floor, ambientLight, pointLight; // three js vars
 let randomColor; // color changing var
+
 const white = 0xffffff;
 const black = 0x000000;
 const green = 0x00ff00;
+
+let startTime;
 
 function init() {
   //SETUP
@@ -102,3 +105,41 @@ const newColor = () => {
   randomColor = Math.floor(Math.random() * 16777215).toString(16);
   changeColor(`0x${randomColor}`);
 };
+
+const moveCamera = (movementX, movementY) => {
+  startTime = new Date().getTime();
+  if (camera.position.x < 1 || camera.position.x > 1) {
+    camera.position.x += movementX / 3000;
+  }
+  if (camera.position.y < 1 || camera.position.y > 1) {
+    camera.position.y -= movementY / 3000;
+  }
+};
+
+// setInterval(() => {
+//   if (startTime + 2000 < new Date().getTime()) { // < end time
+//     let count = 0;
+//     let resetMovementSpeed = 0.1;
+//     setInterval(() => {
+//       // if (camera.position.x > 0.5) {
+//       //   camera.position.x -= resetMovementSpeed;
+//       // } else if (camera.position.x < 0.5) {
+//       //   camera.position.x += resetMovementSpeed;
+//       // }
+//       // if (camera.position.y > 0.5) {
+//       //   camera.position.y -= resetMovementSpeed;
+//       // } else if (camera.position.y < 0.5) {
+//       //   camera.position.y += resetMovementSpeed;
+//       // }
+//       camera.position.x = 0;
+//       camera.position.y = 0;
+//     }, 5);
+//   }
+// }, 2000);
+
+const mouseMove = (e) => {
+  // console.log(e.movementX);
+  moveCamera(e.movementX, e.movementY);
+};
+
+window.addEventListener("mousemove", mouseMove, false);
