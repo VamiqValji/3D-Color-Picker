@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 canvas {
@@ -9,10 +10,35 @@ canvas {
   height: 100%;
 }
 
-.ui button {
+.ui h1 {
   display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5em;
+  width: 80%;
+}
+
+.ui button {
   position: absolute;
   top: 85%;
   left: 50%;
   transform: translate(-50%, -50%);
+  color: white;
+  /* border: 0.2rem solid white; */
+  border: none;
+  border-radius: 3rem;
+  padding: 2rem;
+  background: black;
+  font-size: 1.5em;
+  transition: 0.25s;
+  font-weight: 600;
+}
+
+.ui button:hover {
+  background: white;
+  color: black;
+  /* border: 0.2rem solid black; */
 }

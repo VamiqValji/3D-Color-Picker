@@ -3,6 +3,9 @@
 // global vars
 let scene, camera, renderer, cube, floor, ambientLight, pointLight; // three js vars
 let randomColor; // color changing var
+const white = 0xffffff;
+const black = 0x000000;
+const green = 0x00ff00;
 
 function init() {
   //SETUP
@@ -21,7 +24,7 @@ function init() {
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setClearColor(0x000000, 1); // background color
+  renderer.setClearColor(white, 1); // background color
 
   document.body.appendChild(renderer.domElement);
 
@@ -30,7 +33,7 @@ function init() {
   // cube
   geometry = new THREE.BoxGeometry(2, 1, 1);
   material = new THREE.MeshLambertMaterial({
-    color: 0x00ff00,
+    color: white,
     // antialias: true,
   });
   cube = new THREE.Mesh(geometry, material);
@@ -40,7 +43,7 @@ function init() {
 
   geometry = new THREE.BoxGeometry(20, 0.3, 20);
   material = new THREE.MeshLambertMaterial({
-    color: 0xffffff,
+    color: white,
     //   antialias: true,
   });
   floor = new THREE.Mesh(geometry, material);
@@ -54,14 +57,14 @@ function init() {
   //   const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
   //   scene.add(directionalLight);
   //   directionalLight.rotation.z = 30;
-  pointLight = new THREE.PointLight(0xffffff, 1, 100);
+  pointLight = new THREE.PointLight(white, 1, 100);
   pointLight.position.set(0, 3, 0);
   pointLight.castShadow = true; // default false
   scene.add(pointLight);
 
-  // helper
-  const helper = new THREE.CameraHelper(pointLight.shadow.camera);
-  scene.add(helper);
+  // HELPER
+  //   const helper = new THREE.CameraHelper(pointLight.shadow.camera);
+  //   scene.add(helper);
 
   // camera
   camera.position.z = 5;
