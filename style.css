@@ -53,12 +53,12 @@ canvas {
   left: 2rem;
   background: none;
   padding: 0rem;
-  filter: invert(1);
+  /* filter: invert(0); */
 }
 
 .ui #dropDownBtn:hover {
   background: none;
-  filter: invert(0);
+  /* filter: invert(1); */
 }
 
 .ui .drop {
@@ -71,4 +71,63 @@ canvas {
   background: white;
   color: black;
   /* border: 0.2rem solid black; */
+}
+
+/* .ui #dropDownBtn {
+  display: block;
+  background: black;
+  z-index: 1;
+  cursor: pointer;
+}
+
+#dropDownBtn .line1 {
+  width: 2rem;
+  height: 0.3rem;
+}
+#dropDownBtn .line2 {
+  margin-top: 1rem;
+  width: 2rem;
+  height: 0.3rem;
+}
+#dropDownBtn .line3 {
+  width: 2rem;
+  height: 0.3rem;
+} */
+
+#burgerContainer {
+  margin: 1rem;
+  display: flex;
+  position: absolute;
+  cursor: pointer;
+}
+
+.burger {
+  display: block;
+  z-index: 1;
+}
+
+.line1,
+.line2,
+.line3 {
+  width: 25px;
+  height: 3px;
+  background-color: rgb(226, 226, 226);
+  margin: 5px;
+}
+
+.dropDown,
+.dropDown:hover {
+  z-index: 0;
+  position: absolute;
+  display: flex;
+  background: black;
+  width: 20rem;
+  height: 100%;
+  z-index: 0;
+}
+
+.ui .drop {
+  transition: 0.25s;
+  /* transform: translateY(500%); */
+  /* transform: rotate(180deg); */
 }

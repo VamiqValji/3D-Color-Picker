@@ -161,11 +161,20 @@ const mouseMove = (e) => {
   moveCamera(e.movementX, e.movementY);
 };
 
-let dropBtn = document.getElementById("dropDownBtn");
+let dropBtn = document.getElementById("burgerContainer");
+
+// gsap.from(dropBtn, { x: -25, duration: 1 });
 
 const dropDown = () => {
+  console.log("test");
   dropBtn.classList.toggle("drop");
-  console.log("clicked");
+  if (dropBtn.classList.contains("drop")) {
+    gsap.to(".dropDown", { x: -500, duration: 0.25, ease: "power4" });
+  } else {
+    gsap.to(".dropDown", { x: 0, duration: 0.25, ease: "power4" });
+  }
 };
+
+dropBtn.addEventListener("click", dropDown);
 
 window.addEventListener("mousemove", mouseMove, false);
