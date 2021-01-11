@@ -42,6 +42,31 @@ canvas {
   padding: 1rem;
 }
 
+.ui button img {
+  width: 2.7rem;
+  height: 2rem;
+  filter: invert(0.5);
+  filter: drop-shadow(0rem 0rem 0.09rem black);
+}
+.ui #dropDownBtn {
+  top: 2rem;
+  left: 2rem;
+  background: none;
+  padding: 0rem;
+  filter: invert(1);
+}
+
+.ui #dropDownBtn:hover {
+  background: none;
+  filter: invert(0);
+}
+
+.ui .drop {
+  transition: 0.25s;
+  transform: translateY(500%);
+  /* transform: rotate(180deg); */
+}
+
 .ui button:hover {
   background: white;
   color: black;

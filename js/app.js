@@ -161,4 +161,11 @@ const mouseMove = (e) => {
   moveCamera(e.movementX, e.movementY);
 };
 
+let dropBtn = document.getElementById("dropDownBtn");
+
+const dropDown = () => {
+  dropBtn.classList.toggle("drop");
+  console.log("clicked");
+};
+
 window.addEventListener("mousemove", mouseMove, false);
