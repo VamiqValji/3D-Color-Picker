@@ -97,10 +97,39 @@ window.addEventListener("resize", onWindowResize, false);
 init();
 animate();
 
+let count = 0;
+let titleTextList = [
+  "Like this color?",
+  "How long are you gonna go at this?",
+  "You're a perfectionist, aren't you?",
+  "That's a good one.",
+  "Yikes.",
+  "My eyes hurt.",
+];
+
+let title = document.getElementById("title");
+
 const changeColor = (randColor) => {
   floor.material.color.setHex(randColor);
   cube.material.color.setHex(randColor);
   renderer.setClearColor(parseInt(randColor), 1);
+
+  if (count % Math.floor(Math.random() * 10 + 1) == 0) {
+    let listIndex = Math.floor(Math.random() * titleTextList.length - 1);
+    console.log(title.innerHTML);
+    if (
+      listIndex == titleTextList.indexOf(title.innerHTML) &&
+      listIndex >= titleTextList.length
+    ) {
+      listIndex--;
+    } else {
+      listIndex++;
+    }
+    gsap.from("#title", { y: -10 });
+    title.innerHTML = `${titleTextList[listIndex]}`;
+    console.log(listIndex);
+  }
+  count++;
 };
 
 const newColor = () => {
