@@ -151,10 +151,14 @@ const moveCamera = (movementX, movementY) => {
 //   }
 // }, 2000);
 
+let resetBtn = document.getElementById("resetBtn");
+
 const resetPosition = () => {
   camera.position.y = 0;
   camera.position.x = 0;
 };
+
+resetBtn.addEventListener("click", resetPosition);
 
 const mouseMove = (e) => {
   // console.log(e.movementX);
@@ -162,7 +166,8 @@ const mouseMove = (e) => {
 };
 
 let dropBtn = document.getElementById("burgerContainer");
-
+gsap.to(".dropDown", { x: -500, duration: 0.25, ease: "power4" });
+dropBtn.classList.add("drop");
 // gsap.from(dropBtn, { x: -25, duration: 1 });
 
 const dropDown = () => {
@@ -170,8 +175,16 @@ const dropDown = () => {
   dropBtn.classList.toggle("drop");
   if (dropBtn.classList.contains("drop")) {
     gsap.to(".dropDown", { x: -500, duration: 0.25, ease: "power4" });
+    // gsap.to(".dropDownContainer li", {
+    //   y: 100,
+    //   stagger: 0.1, // 0.1 seconds between when each ".box" element starts animating
+    // });
   } else {
     gsap.to(".dropDown", { x: 0, duration: 0.25, ease: "power4" });
+    // gsap.to(".dropDownContainer li", {
+    //   y: 0,
+    //   stagger: 0.1, // 0.1 seconds between when each ".box" element starts animating
+    // });
   }
 };
 

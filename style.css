@@ -23,7 +23,7 @@ canvas {
 
 .ui button {
   position: absolute;
-  top: 75%;
+  top: 85%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
@@ -37,17 +37,13 @@ canvas {
   font-weight: 600;
 }
 
-.ui button.reset {
-  top: 85%;
-  padding: 1rem;
-}
-
-.ui button img {
+/* .ui button img {
   width: 2.7rem;
   height: 2rem;
   filter: invert(0.5);
   filter: drop-shadow(0rem 0rem 0.09rem black);
-}
+} */
+
 .ui #dropDownBtn {
   top: 2rem;
   left: 2rem;
@@ -63,7 +59,7 @@ canvas {
 
 .ui .drop {
   transition: 0.25s;
-  transform: translateY(500%);
+  /* transform: translateY(500%); */
   /* transform: rotate(180deg); */
 }
 
@@ -101,6 +97,10 @@ canvas {
   cursor: pointer;
 }
 
+/* #burgerContainer .drop {
+  background: white;
+} */
+
 .burger {
   display: block;
   z-index: 1;
@@ -111,9 +111,38 @@ canvas {
 .line3 {
   width: 25px;
   height: 3px;
-  background-color: rgb(226, 226, 226);
+  background: white;
+  /* filter: drop-shadow(white 0px 0px 1px); */
   margin: 5px;
+  transition: 0.1s;
 }
+
+.drop .line1,
+.drop .line2,
+.drop .line3 {
+  background: black;
+}
+
+/* .drop .line1 {
+  transform: rotateZ(45deg) translate(0%, 500%);
+  background: rebeccapurple;
+}
+
+.drop .line2 {
+  background: coral;
+  opacity: 0;
+}
+
+.drop .line3 {
+  transform: rotateZ(-45deg) translate(0%, 500%);
+  background: crimson;
+} */
+
+/* #burgerContainer .line1,
+#burgerContainer .line2,
+#burgerContainer .line3 {
+  background: white;
+} */
 
 .dropDown,
 .dropDown:hover {
@@ -126,8 +155,48 @@ canvas {
   z-index: 0;
 }
 
+.dropDown .dropDownContainer {
+  justify-content: center;
+  width: 85%;
+  margin: 0 auto 0 auto;
+}
+
+.dropDown .dropDownContainer button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: none;
+}
+
+.dropDown li {
+  list-style: none;
+  display: block;
+  color: white;
+  background: black;
+  padding: 1rem;
+  text-align: center;
+  transition: 0.25s;
+  cursor: pointer;
+  font-size: 2em;
+  border-radius: 8rem;
+  margin-top: 1rem;
+}
+
+.dropDown li:first-child {
+  margin-top: 5rem;
+}
+
+.dropDown li:hover {
+  background: white;
+  color: black;
+}
+
+.footerContainer {
+  display: block;
+  justify-content: center;
+  background: white;
+}
+
 .ui .drop {
   transition: 0.25s;
-  /* transform: translateY(500%); */
-  /* transform: rotate(180deg); */
 }
