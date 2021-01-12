@@ -2,7 +2,7 @@
 
 // global vars
 let scene, camera, renderer, cube, floor, ambientLight, pointLight; // three js vars
-let randomColor; // color changing var
+let randomColor, displayColorValueBool; // color changing var
 
 const white = 0xffffff;
 const black = 0x000000;
@@ -108,12 +108,38 @@ let titleTextList = [
 ];
 
 let title = document.getElementById("title");
+let colorValueTxt = document.getElementById("colorValue");
+
+const hexToRGB = (hex) => {
+  let hexed = hex.match(/.{1,2}/g);
+  console.log(hex);
+  let rgb = [
+    parseInt(hexed[0], 16),
+    parseInt(hexed[1], 16),
+    parseInt(hexed[2], 16),
+  ];
+  return `(${rgb[0]},${rgb[1]},${rgb[2]})`;
+};
 
 const changeColor = (randColor) => {
+  // change color
   floor.material.color.setHex(randColor);
   cube.material.color.setHex(randColor);
   renderer.setClearColor(parseInt(randColor), 1);
 
+  // change text value txt
+
+  // if (displayColorValueBool) {
+  //   colorValueTxt.innerHTML = `${randomColor}`;
+  // } else {
+  //   colorValueTxt.innerHTML = "";
+  // }
+
+  colorValueTxt.innerHTML = displayColorValueBool
+    ? (colorValueTxt.innerHTML = `#${randomColor}<br>${hexToRGB(randomColor)}`)
+    : (colorValueTxt.innerHTML = "");
+
+  // change title txt
   if (count % Math.floor(Math.random() * 10 + 1) == 0) {
     let listIndex = Math.floor(Math.random() * titleTextList.length - 1);
     console.log(title.innerHTML);
@@ -190,7 +216,6 @@ const resetPosition = () => {
 resetBtn.addEventListener("click", resetPosition);
 
 const mouseMove = (e) => {
-  // console.log(e.movementX);
   moveCamera(e.movementX, e.movementY);
 };
 
@@ -204,19 +229,25 @@ const dropDown = () => {
   dropBtn.classList.toggle("drop");
   if (dropBtn.classList.contains("drop")) {
     gsap.to(".dropDown", { x: -500, duration: 0.25, ease: "power4" });
-    // gsap.to(".dropDownContainer li", {
-    //   y: 100,
-    //   stagger: 0.1, // 0.1 seconds between when each ".box" element starts animating
-    // });
   } else {
     gsap.to(".dropDown", { x: 0, duration: 0.25, ease: "power4" });
-    // gsap.to(".dropDownContainer li", {
-    //   y: 0,
-    //   stagger: 0.1, // 0.1 seconds between when each ".box" element starts animating
-    // });
   }
 };
 
 dropBtn.addEventListener("click", dropDown);
 
 window.addEventListener("mousemove", mouseMove, false);
+
+let colorValueBtn = document.getElementById("colorValueBtn");
+
+const displayColorValueFunc = () => {
+  if (displayColorValueBool === true) {
+    displayColorValueBool = false;
+    colorValueTxt.innerHTML = "";
+  } else {
+    displayColorValueBool = true;
+    colorValueTxt.innerHTML = `#${randomColor}<br>${hexToRGB(randomColor)}`;
+  }
+};
+
+colorValueBtn.addEventListener("click", displayColorValueFunc);

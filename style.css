@@ -200,3 +200,11 @@ canvas {
 .ui .drop {
   transition: 0.25s;
 }
+
+#colorValue {
+  position: absolute;
+  display: flex;
+  right: 0rem;
+  margin: 1rem;
+  direction: rtl;
+}
