@@ -215,8 +215,24 @@ const resetPosition = () => {
 
 resetBtn.addEventListener("click", resetPosition);
 
+let lockBtn = document.getElementById("lockBtn");
+let lockBool = false;
+
+const lockBtnFunc = () => {
+  // lockBool = true ? false : true;
+  if (lockBool === false) {
+    lockBool = true;
+  } else {
+    lockBool = false;
+  }
+};
+
+lockBtn.addEventListener("click", lockBtnFunc);
+
 const mouseMove = (e) => {
-  moveCamera(e.movementX, e.movementY);
+  if (lockBool === false) {
+    moveCamera(e.movementX, e.movementY);
+  }
 };
 
 let dropBtn = document.getElementById("burgerContainer");
