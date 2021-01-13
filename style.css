@@ -191,12 +191,6 @@ canvas {
   color: black;
 }
 
-.footerContainer {
-  display: block;
-  justify-content: center;
-  background: white;
-}
-
 .ui .drop {
   transition: 0.25s;
 }
@@ -207,4 +201,19 @@ canvas {
   right: 0rem;
   margin: 1rem;
   direction: rtl;
+}
+
+.footerContainer {
+  position: absolute;
+  bottom: 0rem;
+}
+
+#footer {
+  cursor: auto;
+  letter-spacing: 0.3;
+}
+
+#footer:hover {
+  background: black;
+  color: white;
 }

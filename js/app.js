@@ -225,7 +225,6 @@ dropBtn.classList.add("drop");
 // gsap.from(dropBtn, { x: -25, duration: 1 });
 
 const dropDown = () => {
-  console.log("test");
   dropBtn.classList.toggle("drop");
   if (dropBtn.classList.contains("drop")) {
     gsap.to(".dropDown", { x: -500, duration: 0.25, ease: "power4" });
