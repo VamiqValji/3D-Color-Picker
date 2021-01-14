@@ -131,7 +131,7 @@ const changeColor = (randColor) => {
 
   if (displayColorValueBool) {
     try {
-      colorValueTxt.innerHTML = `#${randomColor}<br>${hexToRGB(randomColor)}`;
+      colorValueTxt.innerHTML = `${randomColor}<br>${hexToRGB(randomColor)}`;
     } catch {
       colorValueTxt.innerHTML = `FFFFFF<br>(255,255,255)`;
     }
@@ -248,8 +248,20 @@ const dropDown = () => {
   dropBtn.classList.toggle("drop");
   if (dropBtn.classList.contains("drop")) {
     gsap.to(".dropDown", { x: -500, duration: 0.25, ease: "power4" });
+    // gsap.to(".dropDown li", {
+    //   opacity: 1,
+    //   stagger: {
+    //     amount: 0.1,
+    //   },
+    // });
   } else {
     gsap.to(".dropDown", { x: 0, duration: 0.25, ease: "power4" });
+    // gsap.from(".dropDown li", {
+    //   opacity: 0,
+    //   stagger: {
+    //     amount: 0.1,
+    //   },
+    // });
   }
 };
 
@@ -266,7 +278,7 @@ const displayColorValueFunc = () => {
   } else {
     displayColorValueBool = true;
     try {
-      colorValueTxt.innerHTML = `#${randomColor}<br>${hexToRGB(randomColor)}`;
+      colorValueTxt.innerHTML = `${randomColor}<br>${hexToRGB(randomColor)}`;
     } catch {
       colorValueTxt.innerHTML = `FFFFFF<br>(255,255,255)`;
     }
@@ -301,6 +313,43 @@ const copyToClipboard = () => {
   valuePlaceHolder.select();
   valuePlaceHolder.setSelectionRange(0, 99999);
   document.execCommand("copy");
+
+  alert(`'${returnValuePlaceHolder}' copied.`);
 };
 
 copyBtn.addEventListener("click", copyToClipboard);
+
+// ui off btn
+
+let UIBtn = document.getElementById("UIBtn");
+
+let uiBool = false;
+
+let uiAnimationOn = {
+  display: "flex",
+  ease: "power4.out",
+  opacity: 1,
+  duration: 0.25,
+};
+
+let uiAnimationOff = {
+  display: "none",
+  opacity: 0,
+  duration: 0.25,
+};
+
+const uiFunc = () => {
+  if (uiBool) {
+    gsap.to("#colorValue", uiAnimationOff);
+    gsap.to("#title", uiAnimationOff);
+    gsap.to(".changeColorBtn", uiAnimationOff);
+    uiBool = false;
+  } else {
+    gsap.to("#colorValue", uiAnimationOn);
+    gsap.to("#title", uiAnimationOn);
+    gsap.to(".changeColorBtn", uiAnimationOn);
+    uiBool = true;
+  }
+};
+
+UIBtn.addEventListener("click", uiFunc);

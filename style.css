@@ -152,6 +152,7 @@ canvas {
   background: black;
   width: 20rem;
   height: 100%;
+  border-radius: 0rem 1rem 1rem 0rem;
   z-index: 0;
 }
 
@@ -228,7 +229,8 @@ canvas {
 
 #valuePlaceholder {
   position: absolute;
-  transform: translateX(-500%);
+  display: flex;
+  left: -500%;
   opacity: 0;
 }
 
@@ -236,12 +238,26 @@ canvas {
   .ui h1 {
     font-size: calc(4em);
   }
+  .dropDown li {
+    margin-top: 0.8rem;
+    font-size: 1.6em;
+    border-radius: 2rem;
+  }
+  #footer {
+    display: flex;
+    font-size: 2em;
+  }
 }
 
 @media only screen and (max-width: 900px) {
   .ui h1 {
     margin-top: 1rem;
     font-size: calc(3em);
+  }
+  .dropDown li {
+    margin-top: 0.8rem;
+    font-size: 1.5em;
+    border-radius: 2rem;
   }
 }
 
@@ -255,12 +271,13 @@ canvas {
     padding: 0.5rem;
   }
   .dropDown li {
-    font-size: 1.7em;
+    margin-top: 0.7rem;
+    font-size: 1.5em;
+    border-radius: 2rem;
   }
-  #footer {
-    display: flex;
-    font-size: 2em;
-  }
+  /* #selectCopyValue {
+    font-size: 0.6em;
+  } */
   .dropDown,
   .dropDown:hover {
     width: 15rem;
