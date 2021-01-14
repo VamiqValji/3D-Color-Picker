@@ -112,7 +112,7 @@ let colorValueTxt = document.getElementById("colorValue");
 
 const hexToRGB = (hex) => {
   let hexed = hex.match(/.{1,2}/g);
-  console.log(hex);
+  // console.log(hex);
   let rgb = [
     parseInt(hexed[0], 16),
     parseInt(hexed[1], 16),
@@ -129,20 +129,24 @@ const changeColor = (randColor) => {
 
   // change text value txt
 
-  // if (displayColorValueBool) {
-  //   colorValueTxt.innerHTML = `${randomColor}`;
-  // } else {
-  //   colorValueTxt.innerHTML = "";
-  // }
+  if (displayColorValueBool) {
+    try {
+      colorValueTxt.innerHTML = `#${randomColor}<br>${hexToRGB(randomColor)}`;
+    } catch {
+      colorValueTxt.innerHTML = `FFFFFF<br>(255,255,255)`;
+    }
+  } else {
+    colorValueTxt.innerHTML = "";
+  }
 
-  colorValueTxt.innerHTML = displayColorValueBool
-    ? (colorValueTxt.innerHTML = `#${randomColor}<br>${hexToRGB(randomColor)}`)
-    : (colorValueTxt.innerHTML = "");
+  // colorValueTxt.innerHTML = displayColorValueBool
+  //   ? (colorValueTxt.innerHTML = `#${randomColor}<br>${hexToRGB(randomColor)}`)
+  //   : (colorValueTxt.innerHTML = "");
 
   // change title txt
   if (count % Math.floor(Math.random() * 10 + 1) == 0) {
     let listIndex = Math.floor(Math.random() * titleTextList.length - 1);
-    console.log(title.innerHTML);
+    // console.log(title.innerHTML);
     if (
       listIndex == titleTextList.indexOf(title.innerHTML) &&
       listIndex >= titleTextList.length
@@ -153,7 +157,7 @@ const changeColor = (randColor) => {
     }
     gsap.from("#title", { y: -10 });
     title.innerHTML = `${titleTextList[listIndex]}`;
-    console.log(listIndex);
+    // console.log(listIndex);
   }
   count++;
 };
@@ -261,8 +265,42 @@ const displayColorValueFunc = () => {
     colorValueTxt.innerHTML = "";
   } else {
     displayColorValueBool = true;
-    colorValueTxt.innerHTML = `#${randomColor}<br>${hexToRGB(randomColor)}`;
+    try {
+      colorValueTxt.innerHTML = `#${randomColor}<br>${hexToRGB(randomColor)}`;
+    } catch {
+      colorValueTxt.innerHTML = `FFFFFF<br>(255,255,255)`;
+    }
   }
 };
 
 colorValueBtn.addEventListener("click", displayColorValueFunc);
+
+let copyBtn = document.getElementById("copy");
+let valuePlaceHolder = document.getElementById("valuePlaceholder");
+
+const copyToClipboard = () => {
+  let selectCopyValue = document.getElementById("selectCopyValue");
+  // console.log(selectCopyValue.value);
+
+  let returnValuePlaceHolder;
+  if (selectCopyValue.value === "RGB") {
+    try {
+      returnValuePlaceHolder = `${hexToRGB(randomColor)}`;
+    } catch {
+      returnValuePlaceHolder = `FFFFFF`;
+    }
+  } else if (selectCopyValue.value === "HEX") {
+    try {
+      returnValuePlaceHolder = `${randomColor}`;
+    } catch {
+      returnValuePlaceHolder = `(255,255,255)`;
+    }
+  }
+
+  valuePlaceHolder.innerHTML = returnValuePlaceHolder;
+  valuePlaceHolder.select();
+  valuePlaceHolder.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+};
+
+copyBtn.addEventListener("click", copyToClipboard);

@@ -218,6 +218,20 @@ canvas {
   color: white;
 }
 
+#selectCopyValue {
+  color: white;
+  background: black;
+  padding: 0.2rem;
+  font-size: 0.8em;
+  border-radius: 0.5rem;
+}
+
+#valuePlaceholder {
+  position: absolute;
+  transform: translateX(-500%);
+  opacity: 0;
+}
+
 @media only screen and (max-width: 1400px) {
   .ui h1 {
     font-size: calc(4em);

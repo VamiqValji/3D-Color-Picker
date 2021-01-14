@@ -28,7 +28,16 @@
           <li id="resetBtn">Reset Position</li>
           <li id="lockBtn">Lock Position</li>
           <li id="colorValueBtn">Display Color Values</li>
-          <li>Screenshot</li>
+          <li id="copyBtn">
+            <p>
+              <span id="copy"> Copy To Clipboard</span> <br />
+              <select id="selectCopyValue">
+                <option value="HEX">HEX</option>
+                <option value="RGB" selected>RGB</option>
+              </select>
+              <textarea id="valuePlaceholder">d</textarea>
+            </p>
+          </li>
         </div>
         <div class="footerContainer">
           <li id="footer">Vamiq Valji © 2021</li>
