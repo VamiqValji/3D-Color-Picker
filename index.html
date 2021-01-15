@@ -22,29 +22,34 @@
           <div class="line2"></div>
           <div class="line3"></div>
         </div>
+        <!-- <div class="burgerTitle">Options</div> -->
       </div>
       <div class="dropDown">
-        <div class="dropDownContainer">
-          <li id="resetBtn">Reset Position</li>
-          <li id="lockBtn">Lock Position</li>
-          <li id="colorValueBtn">Display Color Values</li>
-          <li id="copyBtn">
-            <p>
-              <span id="copy"> Copy To Clipboard</span> <br />
-              <select id="selectCopyValue">
-                <option value="HEX">HEX</option>
-                <option value="RGB" selected>RGB</option>
-              </select>
-              <textarea id="valuePlaceholder">d</textarea>
-            </p>
-          </li>
-          <li id="UIBtn">UI Off</li>
-        </div>
-        <div class="footerContainer">
-          <li id="footer">Vamiq Valji © 2021</li>
+        <div class="dropDownHolder">
+          <div class="dropDownContainer">
+            <li id="resetBtn">Reset Position</li>
+            <li id="lockBtn">Lock Position</li>
+            <li id="colorValueBtn">Display Color Values</li>
+            <li id="prevColorBtn">Display Previous Color</li>
+            <li id="copyBtn">
+              <p>
+                <span id="copy"> Copy To Clipboard</span> <br />
+                <select id="selectCopyValue">
+                  <option value="HEX">HEX</option>
+                  <option value="RGB" selected>RGB</option>
+                </select>
+                <textarea id="valuePlaceholder"></textarea>
+              </p>
+            </li>
+            <li id="UIBtn">UI Off</li>
+          </div>
         </div>
       </div>
-      <p id="colorValue"></p>
+      <div id="footer">Vamiq Valji © 2021</div>
+      <div>
+        <p id="colorValue"></p>
+        <p id="prevColorText"></p>
+      </div>
       <!-- <button onclick="moveCamera()">Move Camera</button> -->
     </div>
     <script

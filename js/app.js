@@ -1,16 +1,23 @@
 //  ALWAYS NEEDS SCENE, RENDERER, AND CAMERA
 
 // global vars
-let scene, camera, renderer, cube, floor, ambientLight, pointLight; // three js vars
-let randomColor, displayColorValueBool; // color changing var
 
 const white = 0xffffff;
 const black = 0x000000;
 const green = 0x00ff00;
 
+let scene, camera, renderer, cube, floor, ambientLight, pointLight; // three js vars
+let randomColor; // color changing var
+let displayColorValueBool = false;
+
 let time;
 let startTime;
 let endTime;
+
+let prevColorBtn = document.getElementById("prevColorBtn");
+let prevColorText = document.getElementById("prevColorText");
+
+let prevColorBool = true;
 
 function init() {
   //SETUP
@@ -105,6 +112,7 @@ let titleTextList = [
   "That's a good one.",
   "Yikes.",
   "My eyes hurt.",
+  "Wonderful!",
 ];
 
 let title = document.getElementById("title");
@@ -241,6 +249,13 @@ const mouseMove = (e) => {
 
 let dropBtn = document.getElementById("burgerContainer");
 gsap.to(".dropDown", { x: -500, duration: 0.25, ease: "power4" });
+// gsap.to("#burgerContainer", {
+//   background: "none",
+//   color: "black",
+//   duration: 0.25,
+//   ease: "power4",
+// });
+
 dropBtn.classList.add("drop");
 // gsap.from(dropBtn, { x: -25, duration: 1 });
 
@@ -248,6 +263,14 @@ const dropDown = () => {
   dropBtn.classList.toggle("drop");
   if (dropBtn.classList.contains("drop")) {
     gsap.to(".dropDown", { x: -500, duration: 0.25, ease: "power4" });
+
+    // gsap.to("#burgerContainer", {
+    //   background: "none",
+    //   color: "black",
+    //   duration: 0.25,
+    //   ease: "power4",
+    // });
+
     // gsap.to(".dropDown li", {
     //   opacity: 1,
     //   stagger: {
@@ -262,6 +285,12 @@ const dropDown = () => {
     //     amount: 0.1,
     //   },
     // });
+    // gsap.to("#burgerContainer", {
+    //   background: "black",
+    //   color: "white",
+    //   duration: 0.25,
+    //   ease: "power4",
+    // });
   }
 };
 
@@ -271,10 +300,27 @@ window.addEventListener("mousemove", mouseMove, false);
 
 let colorValueBtn = document.getElementById("colorValueBtn");
 
+const returnPrevColorText = () => {
+  return `Previous Color: ${randomColor}<br>${hexToRGB(randomColor)}`;
+};
+
 const displayColorValueFunc = () => {
   if (displayColorValueBool === true) {
+    if (prevColorText.innerHTML === "") {
+      colorValueTxt.innerHTML = "";
+    } else {
+      if (colorValueTxt.innerHTML.includes("Previous")) {
+        prevColorText.innerHTML = `<br>Previous Color: ${randomColor}<br>${hexToRGB(
+          randomColor
+        )}`;
+      } else {
+        colorValueTxt.innerHTML = `Previous Color: ${randomColor}<br>${hexToRGB(
+          randomColor
+        )}`;
+        prevColorText.innerHTML = "";
+      }
+    }
     displayColorValueBool = false;
-    colorValueTxt.innerHTML = "";
   } else {
     displayColorValueBool = true;
     try {
@@ -323,7 +369,7 @@ copyBtn.addEventListener("click", copyToClipboard);
 
 let UIBtn = document.getElementById("UIBtn");
 
-let uiBool = false;
+let uiBool = true;
 
 let uiAnimationOn = {
   display: "flex",
@@ -343,13 +389,53 @@ const uiFunc = () => {
     gsap.to("#colorValue", uiAnimationOff);
     gsap.to("#title", uiAnimationOff);
     gsap.to(".changeColorBtn", uiAnimationOff);
+    UIBtn.innerHTML = "UI On";
     uiBool = false;
   } else {
     gsap.to("#colorValue", uiAnimationOn);
     gsap.to("#title", uiAnimationOn);
     gsap.to(".changeColorBtn", uiAnimationOn);
+    UIBtn.innerHTML = "UI Off";
     uiBool = true;
   }
 };
 
 UIBtn.addEventListener("click", uiFunc);
+
+// display previous color
+
+const prevColorFunc = () => {
+  if (prevColorBool) {
+    if (displayColorValueBool == false) {
+      if (colorValueTxt.innerHTML === "") {
+        colorValueTxt.innerHTML = `Previous Color: ${randomColor}<br>${hexToRGB(
+          randomColor
+        )}`;
+      } else {
+        if (!colorValueTxt.innerHTML.includes("Previous")) {
+          prevColorText.innerHTML = `<br>Previous Color: ${randomColor}<br>${hexToRGB(
+            randomColor
+          )}`;
+        } else {
+          prevColorText.innerHTML = "";
+        }
+      }
+    } else {
+      prevColorText.innerHTML = `<br>Previous Color: ${randomColor}<br>${hexToRGB(
+        randomColor
+      )}`;
+    }
+
+    gsap.to("#prevColorText", { display: "flex", duration: 0 });
+    prevColorBool = false;
+  } else {
+    if (colorValueTxt.innerHTML.includes("Previous")) {
+      colorValueTxt.innerHTML = "";
+    }
+    prevColorText.innerHTML = ``;
+    gsap.to("#prevColorText", { display: "none", duration: 0 });
+    prevColorBool = true;
+  }
+};
+
+prevColorBtn.addEventListener("click", prevColorFunc);

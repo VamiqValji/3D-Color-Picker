@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
 }
 
 canvas {
@@ -95,15 +96,25 @@ canvas {
   display: flex;
   position: absolute;
   cursor: pointer;
+  /* width: 15rem;
+  padding: 2rem;
+  z-index: 1; */
 }
 
-/* #burgerContainer .drop {
-  background: white;
+/* .burgerTitle {
+  display: flex;
+  justify-content: center;
+  cursor: auto;
+  font-size: 1.2em;
+  font-weight: 600;
+  display: flex;
 } */
 
 .burger {
   display: block;
   z-index: 1;
+  /* background: black;
+  border-radius: 0.3rem; */
 }
 
 .line1,
@@ -169,6 +180,10 @@ canvas {
   border-radius: none;
 }
 
+.dropDownHolder {
+  overflow-y: auto;
+}
+
 .dropDown li {
   list-style: none;
   display: block;
@@ -187,6 +202,10 @@ canvas {
   margin-top: 5rem;
 }
 
+/* .dropDown li:nth-last-child(0) {
+  margin-bottom: 5rem;
+} */
+
 .dropDown li:hover {
   background: white;
   color: black;
@@ -196,27 +215,29 @@ canvas {
   transition: 0.25s;
 }
 
-#colorValue {
+#colorValue,
+#prevColorText {
   position: absolute;
   display: flex;
   right: 0rem;
   margin: 1rem;
   direction: rtl;
+  float: top;
 }
 
-.footerContainer {
-  position: absolute;
-  bottom: 0rem;
+#prevColorText {
+  margin: 2.5rem 1rem 1rem 1rem;
 }
 
 #footer {
+  position: absolute;
+  display: flex;
   cursor: auto;
   letter-spacing: 0.3;
-}
-
-#footer:hover {
-  background: black;
-  color: white;
+  border-radius: 0;
+  margin: 1rem;
+  bottom: 0;
+  right: 0;
 }
 
 #selectCopyValue {
