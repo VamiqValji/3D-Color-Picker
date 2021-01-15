@@ -1,21 +1,24 @@
 //  ALWAYS NEEDS SCENE, RENDERER, AND CAMERA
 
 // global vars
+let scene, camera, renderer, cube, floor, ambientLight, pointLight; // three js vars
+let randomColor; // color changing var
+let displayColorValueBool = false;
 
 const white = 0xffffff;
 const black = 0x000000;
 const green = 0x00ff00;
 
-let scene, camera, renderer, cube, floor, ambientLight, pointLight; // three js vars
-let randomColor; // color changing var
-let displayColorValueBool = false;
-
 let time;
 let startTime;
 let endTime;
 
+// display color values
+
 let prevColorBtn = document.getElementById("prevColorBtn");
 let prevColorText = document.getElementById("prevColorText");
+
+let previousColor;
 
 let prevColorBool = true;
 
@@ -112,7 +115,6 @@ let titleTextList = [
   "That's a good one.",
   "Yikes.",
   "My eyes hurt.",
-  "Wonderful!",
 ];
 
 let title = document.getElementById("title");
@@ -168,9 +170,12 @@ const changeColor = (randColor) => {
     // console.log(listIndex);
   }
   count++;
+
+  displayColorsControllers();
 };
 
 const newColor = () => {
+  previousColor = randomColor;
   randomColor = Math.floor(Math.random() * 16777215).toString(16);
   changeColor(`0x${randomColor}`);
 };
@@ -263,34 +268,74 @@ const dropDown = () => {
   dropBtn.classList.toggle("drop");
   if (dropBtn.classList.contains("drop")) {
     gsap.to(".dropDown", { x: -500, duration: 0.25, ease: "power4" });
-
-    // gsap.to("#burgerContainer", {
-    //   background: "none",
-    //   color: "black",
-    //   duration: 0.25,
-    //   ease: "power4",
-    // });
-
-    // gsap.to(".dropDown li", {
-    //   opacity: 1,
-    //   stagger: {
-    //     amount: 0.1,
-    //   },
-    // });
   } else {
     gsap.to(".dropDown", { x: 0, duration: 0.25, ease: "power4" });
-    // gsap.from(".dropDown li", {
-    //   opacity: 0,
-    //   stagger: {
-    //     amount: 0.1,
-    //   },
-    // });
-    // gsap.to("#burgerContainer", {
-    //   background: "black",
-    //   color: "white",
-    //   duration: 0.25,
-    //   ease: "power4",
-    // });
+  }
+};
+
+const colorsHolder = document.createElement("div");
+colorsHolder.id = "colors";
+
+// let colorsHolder = document.getElementById("colors");
+
+const displayColorsControllers = () => {
+  console.log(displayColorValueBool, prevColorBool);
+  const addCurrentColor = () => {
+    // current
+    try {
+      colorValueTxt.innerHTML = `${randomColor}<br>${hexToRGB(randomColor)}`;
+    } catch {
+      colorValueTxt.innerHTML = `FFFFFF<br>(255,255,255)`;
+    }
+  };
+
+  const addPrevColor = (which = "") => {
+    // prev
+    try {
+      if (which === "") {
+        prevColorText.innerHTML = `Previous: ${previousColor}<br>${hexToRGB(
+          previousColor
+        )}`;
+      } else {
+        colorValueTxt.innerHTML = `Previous: ${previousColor}<br>${hexToRGB(
+          previousColor
+        )}`;
+      }
+    } catch {
+      prevColorText.innerHTML = `FFFFFF<br>(255,255,255)`;
+    }
+  };
+
+  const remove = (which) => {
+    if (which === "current") {
+      colorValueTxt.innerHTML = "";
+    } else if (which === "previous") {
+      prevColorText.innerHTML = "";
+    } else if (which === "both") {
+      colorValueTxt.innerHTML = "";
+      prevColorText.innerHTML = "";
+    }
+  };
+
+  // add both
+  if (displayColorValueBool == true && prevColorBool == true) {
+    addCurrentColor();
+    addPrevColor();
+    console.log("1");
+    // } else if (displayColorValueBool == true && prevColorBool == false) {
+    //   // colorsHolder.innerHTML = `${addCurrentColor()}`;
+    //   addCurrentColor();
+    //   remove("previous");
+    //   console.log("2");
+    // } else if (displayColorValueBool == false && prevColorBool == true) {
+    //   // colorsHolder.innerHTML = `${addPrevColor()}`;
+    //   addPrevColor("moveUp");
+    //   remove("current");
+    //   console.log("3");
+  } else {
+    // colorsHolder.innerHTML = ``;
+    remove("both");
+    console.log("4");
   }
 };
 
@@ -300,35 +345,13 @@ window.addEventListener("mousemove", mouseMove, false);
 
 let colorValueBtn = document.getElementById("colorValueBtn");
 
-const returnPrevColorText = () => {
-  return `Previous Color: ${randomColor}<br>${hexToRGB(randomColor)}`;
-};
-
 const displayColorValueFunc = () => {
   if (displayColorValueBool === true) {
-    if (prevColorText.innerHTML === "") {
-      colorValueTxt.innerHTML = "";
-    } else {
-      if (colorValueTxt.innerHTML.includes("Previous")) {
-        prevColorText.innerHTML = `<br>Previous Color: ${randomColor}<br>${hexToRGB(
-          randomColor
-        )}`;
-      } else {
-        colorValueTxt.innerHTML = `Previous Color: ${randomColor}<br>${hexToRGB(
-          randomColor
-        )}`;
-        prevColorText.innerHTML = "";
-      }
-    }
     displayColorValueBool = false;
   } else {
     displayColorValueBool = true;
-    try {
-      colorValueTxt.innerHTML = `${randomColor}<br>${hexToRGB(randomColor)}`;
-    } catch {
-      colorValueTxt.innerHTML = `FFFFFF<br>(255,255,255)`;
-    }
   }
+  displayColorsControllers();
 };
 
 colorValueBtn.addEventListener("click", displayColorValueFunc);
@@ -404,38 +427,21 @@ UIBtn.addEventListener("click", uiFunc);
 
 // display previous color
 
-const prevColorFunc = () => {
-  if (prevColorBool) {
-    if (displayColorValueBool == false) {
-      if (colorValueTxt.innerHTML === "") {
-        colorValueTxt.innerHTML = `Previous Color: ${randomColor}<br>${hexToRGB(
-          randomColor
-        )}`;
-      } else {
-        if (!colorValueTxt.innerHTML.includes("Previous")) {
-          prevColorText.innerHTML = `<br>Previous Color: ${randomColor}<br>${hexToRGB(
-            randomColor
-          )}`;
-        } else {
-          prevColorText.innerHTML = "";
-        }
-      }
-    } else {
-      prevColorText.innerHTML = `<br>Previous Color: ${randomColor}<br>${hexToRGB(
-        randomColor
-      )}`;
-    }
+// const prevColorFunc = () => {
 
-    gsap.to("#prevColorText", { display: "flex", duration: 0 });
+//   if (prevColorBool) {
+//     prevColorBool = false;
+//   } else {
+//     prevColorBool = true;
+//   }
+// };
+
+prevColorBtn.addEventListener("click", () => {
+  if (prevColorBool) {
     prevColorBool = false;
   } else {
-    if (colorValueTxt.innerHTML.includes("Previous")) {
-      colorValueTxt.innerHTML = "";
-    }
-    prevColorText.innerHTML = ``;
-    gsap.to("#prevColorText", { display: "none", duration: 0 });
     prevColorBool = true;
   }
-};
-
-prevColorBtn.addEventListener("click", prevColorFunc);
+  displayColorsControllers();
+  //   // prevColorBool = (true) ? false : true
+});
