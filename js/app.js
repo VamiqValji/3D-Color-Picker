@@ -24,7 +24,16 @@ let previousColor;
 let prevColorBool = true;
 
 let seenColors = ["ffffff"];
-let favoriteColors = ["ffffff"];
+let favoriteColors = [];
+
+// stars
+
+let starsBool = false;
+
+let starsDiv = document.getElementById("stars");
+
+let fullStar = `<i class="fas fa-star"></i>`;
+let emptyStar = `<i class="far fa-star"></i>`;
 
 function init() {
   //SETUP
@@ -145,6 +154,14 @@ const changeColor = (randColor) => {
 
   if (seenColors.includes(randColor) == false) {
     seenColors.push(randColor);
+  }
+
+  if (favoriteColors.includes(randColor)) {
+    starsDiv.innerHTML = fullStar;
+    starsBool = true;
+  } else {
+    starsDiv.innerHTML = emptyStar;
+    starsBool = false;
   }
 
   checkStars();
@@ -291,7 +308,7 @@ colorsHolder.id = "colors";
 // let colorsHolder = document.getElementById("colors");
 
 const displayColorsControllers = () => {
-  console.log(displayColorValueBool, prevColorBool);
+  // console.log(displayColorValueBool, prevColorBool);
   const addCurrentColor = () => {
     // current
     try {
@@ -333,7 +350,7 @@ const displayColorsControllers = () => {
   if (displayColorValueBool == true && prevColorBool == true) {
     addCurrentColor();
     addPrevColor();
-    console.log("1");
+    // console.log("1");
     // } else if (displayColorValueBool == true && prevColorBool == false) {
     //   // colorsHolder.innerHTML = `${addCurrentColor()}`;
     //   addCurrentColor();
@@ -347,7 +364,7 @@ const displayColorsControllers = () => {
   } else {
     // colorsHolder.innerHTML = ``;
     remove("both");
-    console.log("4");
+    // console.log("4");
   }
 };
 
@@ -424,12 +441,16 @@ const uiFunc = () => {
     gsap.to("#colorValue", uiAnimationOff);
     gsap.to("#title", uiAnimationOff);
     gsap.to(".changeColorBtn", uiAnimationOff);
+    gsap.to("#stars", uiAnimationOff);
+    gsap.to("#footer", uiAnimationOff);
     UIBtn.innerHTML = "UI On";
     uiBool = false;
   } else {
     gsap.to("#colorValue", uiAnimationOn);
     gsap.to("#title", uiAnimationOn);
     gsap.to(".changeColorBtn", uiAnimationOn);
+    gsap.to("#stars", uiAnimationOn);
+    gsap.to("#footer", uiAnimationOn);
     UIBtn.innerHTML = "UI Off";
     uiBool = true;
   }
@@ -451,13 +472,6 @@ UIBtn.addEventListener("click", uiFunc);
 
 // stars
 
-let starsDiv = document.getElementById("stars");
-
-let starsBool = false;
-
-let fullStar = `<i class="fas fa-star"></i>`;
-let emptyStar = `<i class="far fa-star"></i>`;
-
 const checkStars = () => {
   if (favoriteColors.includes(randomColor)) {
     starsDiv.innerHTML = fullStar;
@@ -468,16 +482,16 @@ const checkStars = () => {
 };
 
 const addStarsFunc = () => {
+  console.log(favoriteColors);
+  console.log(starsBool);
   if (starsBool) {
     starsDiv.innerHTML = emptyStar;
-    favoriteColors.push(randomColor);
+    favoriteColors = favoriteColors.filter((color) => color !== randomColor);
     starsBool = false;
   } else {
+    console.log("test");
     starsDiv.innerHTML = fullStar;
-
-    // let randomColor = "f";
-    // let favoriteColors = ["f"];
-    // let tempVar = favoriteColors.filter((color) => color !== randomColor);
+    favoriteColors.push(randomColor);
     starsBool = true;
   }
 };
