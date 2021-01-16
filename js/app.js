@@ -2,12 +2,13 @@
 
 // global vars
 let scene, camera, renderer, cube, floor, ambientLight, pointLight; // three js vars
-let randomColor; // color changing var
-let displayColorValueBool = false;
 
 const white = 0xffffff;
 const black = 0x000000;
 const green = 0x00ff00;
+
+let randomColor = "ffffff"; // color changing var
+let displayColorValueBool = false;
 
 let time;
 let startTime;
@@ -21,6 +22,9 @@ let prevColorText = document.getElementById("prevColorText");
 let previousColor;
 
 let prevColorBool = true;
+
+let seenColors = ["ffffff"];
+let favoriteColors = ["ffffff"];
 
 function init() {
   //SETUP
@@ -136,6 +140,14 @@ const changeColor = (randColor) => {
   floor.material.color.setHex(randColor);
   cube.material.color.setHex(randColor);
   renderer.setClearColor(parseInt(randColor), 1);
+
+  // add to lists
+
+  if (seenColors.includes(randColor) == false) {
+    seenColors.push(randColor);
+  }
+
+  checkStars();
 
   // change text value txt
 
@@ -427,21 +439,49 @@ UIBtn.addEventListener("click", uiFunc);
 
 // display previous color
 
-// const prevColorFunc = () => {
-
+// prevColorBtn.addEventListener("click", () => {
 //   if (prevColorBool) {
 //     prevColorBool = false;
 //   } else {
 //     prevColorBool = true;
 //   }
-// };
+//   displayColorsControllers();
+//   //   // prevColorBool = (true) ? false : true
+// });
 
-prevColorBtn.addEventListener("click", () => {
-  if (prevColorBool) {
-    prevColorBool = false;
+// stars
+
+let starsDiv = document.getElementById("stars");
+
+let starsBool = false;
+
+let fullStar = `<i class="fas fa-star"></i>`;
+let emptyStar = `<i class="far fa-star"></i>`;
+
+const checkStars = () => {
+  if (favoriteColors.includes(randomColor)) {
+    starsDiv.innerHTML = fullStar;
   } else {
-    prevColorBool = true;
+    starsDiv.innerHTML = emptyStar;
   }
-  displayColorsControllers();
-  //   // prevColorBool = (true) ? false : true
-});
+  console.log(favoriteColors, seenColors);
+};
+
+const addStarsFunc = () => {
+  if (starsBool) {
+    starsDiv.innerHTML = emptyStar;
+    favoriteColors.push(randomColor);
+    starsBool = false;
+  } else {
+    starsDiv.innerHTML = fullStar;
+
+    // let randomColor = "f";
+    // let favoriteColors = ["f"];
+    // let tempVar = favoriteColors.filter((color) => color !== randomColor);
+    starsBool = true;
+  }
+};
+
+checkStars();
+
+starsDiv.addEventListener("click", addStarsFunc);
