@@ -511,6 +511,8 @@ let viewColorsPage = document.getElementById("viewColorsPage");
 
 let xBtn = document.getElementById("x");
 
+// gsap.to("#viewColorsPageContainer", uiAnimationOff);
+
 const viewPageFunc = () => {
   if (isViewPageActive) {
     gsap.to("#viewColorsPageContainer", uiAnimationOff);

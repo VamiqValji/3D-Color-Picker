@@ -293,8 +293,44 @@ canvas {
 }
 
 #x {
+  display: flex;
   margin: 1rem;
   font-size: 2rem;
+}
+
+.seenColors {
+  display: block;
+  width: 100vw;
+  font-size: 4rem;
+  overflow: visible;
+}
+
+.seenColors div {
+  display: flex;
+  justify-content: center;
+}
+
+.seenColorsLine {
+  margin: auto;
+  padding: 0.1rem;
+  background: rgba(0, 0, 0, 0.25);
+  width: 50vw;
+}
+
+.card {
+  background: white;
+  border-radius: 1rem;
+  filter: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 0.25));
+  background: rgba(255, 0, 0, 0.432);
+  margin: 1rem;
+}
+
+.card p {
+  background: white;
+  width: 8rem;
+  margin-top: 5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
 }
 
 @media only screen and (max-width: 1400px) {
