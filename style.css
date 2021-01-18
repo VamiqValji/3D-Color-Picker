@@ -270,6 +270,33 @@ canvas {
   font-size: 3rem;
 }
 
+#viewSeenColors {
+  background: rgba(128, 128, 128, 0.137);
+}
+
+#viewSeenColors:hover {
+  color: black;
+  background: white;
+}
+
+#viewColorsPageContainer {
+  display: flex;
+  position: absolute;
+  height: 100%;
+  width: 100vw;
+  background: white;
+  z-index: 2;
+}
+
+#viewColorsPage {
+  display: block;
+}
+
+#x {
+  margin: 1rem;
+  font-size: 2rem;
+}
+
 @media only screen and (max-width: 1400px) {
   .ui h1 {
     font-size: calc(4em);

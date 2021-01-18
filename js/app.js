@@ -499,3 +499,29 @@ const addStarsFunc = () => {
 checkStars();
 
 starsDiv.addEventListener("click", addStarsFunc);
+
+// view colors page
+
+let viewSeenBtn = document.getElementById("viewSeenColors");
+let isViewPageActive = false;
+let viewColorsPageContainer = document.getElementById(
+  "viewColorsPageContainer"
+);
+let viewColorsPage = document.getElementById("viewColorsPage");
+
+let xBtn = document.getElementById("x");
+
+const viewPageFunc = () => {
+  if (isViewPageActive) {
+    gsap.to("#viewColorsPageContainer", uiAnimationOff);
+    // viewColorsPage.innerHTML = "";
+    isViewPageActive = false;
+  } else {
+    gsap.to("#viewColorsPageContainer", uiAnimationOn);
+    // viewColorsPage.innerHTML = "";
+    isViewPageActive = true;
+  }
+};
+
+viewSeenBtn.addEventListener("click", viewPageFunc);
+xBtn.addEventListener("click", viewPageFunc);
