@@ -356,6 +356,23 @@ canvas {
   font-weight: 400;
 }
 
+.trash {
+  font-size: 1rem;
+  display: flex;
+  position: absolute;
+  right: 0.5rem;
+  top: 0.4rem;
+  display: block;
+  float: right;
+  color: rgba(0, 0, 0, 0.5);
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.trash:hover {
+  color: black;
+}
+
 @media only screen and (max-width: 1400px) {
   .ui h1 {
     font-size: calc(4em);

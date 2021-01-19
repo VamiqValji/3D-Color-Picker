@@ -478,7 +478,7 @@ const checkStars = () => {
   } else {
     starsDiv.innerHTML = emptyStar;
   }
-  console.log(favoriteColors, seenColors);
+  // console.log(favoriteColors, seenColors);
 };
 
 const addStarsFunc = () => {
@@ -519,7 +519,7 @@ let seenFavColorsCards = document.getElementById("seenFavColorsCards");
 const renderSeenColors = () => {
   let displayColors = [];
   let tempList = seenColors.map((color) => {
-    displayColors.push(`<div class="card" style='background:#${color.replace(
+    displayColors.push(`<div class="card seenCard" style='background:#${color.replace(
       "0x",
       ""
     )};'>
@@ -527,7 +527,8 @@ const renderSeenColors = () => {
       ${color.replace("0x", "")}
       <br />
       ${hexToRGB(color.replace("0x", ""))}
-    </p>
+      <br />
+      <span class='trash'><i class="fas fa-trash"></i></span></p>
     </div>`);
   });
   seenColorsCards.innerHTML = `<div class='white'>${displayColors}</div>`;
@@ -537,7 +538,7 @@ const renderSeenColors = () => {
 const renderFavColors = () => {
   let displayColors = [];
   let tempList = favoriteColors.map((color) => {
-    displayColors.push(`<div class="card" style='background:#${color.replace(
+    displayColors.push(`<div class="card favCard" style='background:#${color.replace(
       "0x",
       ""
     )};'>
@@ -545,11 +546,60 @@ const renderFavColors = () => {
       ${color.replace("0x", "")}
       <br />
       ${hexToRGB(color.replace("0x", ""))}
-    </p>
+      <br />
+      <span class='trash'><i class="fas fa-trash"></i></span></p>
     </div>`);
   });
   seenFavColorsCards.innerHTML = `<div class='white'>${displayColors}</div>`;
   displayColors = [];
+};
+
+const addCardEventListeners = () => {
+  let seenCards = document.getElementsByClassName("seenCard");
+  let favCards = document.getElementsByClassName("favCard");
+  for (let i = 0; i < favCards.length; i++) {
+    favCards[i].addEventListener("click", () => {
+      let clickedCardColor = favCards[i].innerHTML
+        .slice(9, 21)
+        .replace(" ", "")
+        .slice(5, 11);
+
+      favoriteColors = favoriteColors.filter(
+        (color) => color !== clickedCardColor
+      );
+      // try {
+      //   favCards[i].remove();
+      // } catch {
+      //   favCards[i - 1].remove();
+      // }
+      let white = document.querySelector("white");
+      favCards[i].innerHTML = "";
+      document.querySelector("white").innerHTML = "";
+      console.log(favCards[i]);
+      // favCards[i].remove();
+    });
+  }
+  for (let i = 0; i < seenColors.length; i++) {
+    seenCards[i].addEventListener("click", () => {
+      let clickedCardColor = seenCards[i].innerHTML
+        .slice(9, 21)
+        .replace(" ", "")
+        .slice(5, 11);
+
+      console.log(clickedCardColor);
+
+      seenColors = seenColors.filter((color) => color !== clickedCardColor);
+      // try {
+      //   seenCards[i - 1].remove();
+      // } catch {
+      //   seenCards[i].remove();
+      // }
+      let white = document.querySelector("white");
+      seenCards[i].innerHTML = "";
+      white.innerHTML = "";
+      console.log(seenCards[i]);
+    });
+  }
 };
 
 const viewPageFunc = () => {
@@ -559,6 +609,7 @@ const viewPageFunc = () => {
   } else {
     renderSeenColors();
     renderFavColors();
+    addCardEventListeners();
     gsap.to("#viewColorsPageContainer", uiAnimationOn);
     isViewPageActive = true;
   }
@@ -567,3 +618,28 @@ const viewPageFunc = () => {
 
 viewSeenBtn.addEventListener("click", viewPageFunc);
 xBtn.addEventListener("click", viewPageFunc);
+
+// TESTING DELETE AFTER
+// seenColors = [
+//   "ffffff",
+//   "0x10bdb6",
+//   "0x6c9dd2",
+//   "0xec5662",
+//   "0xfcb20b",
+//   "0x63f00",
+//   "0x96b5",
+// ];
+
+// favoriteColors = [
+//   "ffffff",
+//   "0x10bdb6",
+//   "0x6c9dd2",
+//   "0xec5662",
+//   "0xfcb20b",
+//   "0x63f00",
+//   "0x96b5",
+// ];
+// renderSeenColors();
+// renderFavColors();
+// addCardEventListeners();
+//TESTING DELETE AFTER
