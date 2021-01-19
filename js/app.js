@@ -511,18 +511,34 @@ let viewColorsPage = document.getElementById("viewColorsPage");
 
 let xBtn = document.getElementById("x");
 
+let seenColorsCards = document.getElementById("seenColorsCards");
+
 // gsap.to("#viewColorsPageContainer", uiAnimationOff);
 
 const viewPageFunc = () => {
   if (isViewPageActive) {
     gsap.to("#viewColorsPageContainer", uiAnimationOff);
-    // viewColorsPage.innerHTML = "";
     isViewPageActive = false;
   } else {
+    let displayColors = [];
+    let tempList = seenColors.map((color) => {
+      displayColors.push(`<div class="card" style='background:#${color.replace(
+        "0x",
+        ""
+      )};'>
+      <p>
+        ${color.replace("0x", "")}
+        <br />
+        ${hexToRGB(color.replace("0x", ""))}
+      </p>
+      </div>`);
+    });
+    seenColorsCards.innerHTML = `<div class='white'>${displayColors}</div>`;
+    displayColors = [];
     gsap.to("#viewColorsPageContainer", uiAnimationOn);
-    // viewColorsPage.innerHTML = "";
     isViewPageActive = true;
   }
+  lockBtnFunc();
 };
 
 viewSeenBtn.addEventListener("click", viewPageFunc);

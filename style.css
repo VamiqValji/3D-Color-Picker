@@ -294,20 +294,32 @@ canvas {
 
 #x {
   display: flex;
+  position: fixed;
   margin: 1rem;
   font-size: 2rem;
 }
 
-.seenColors {
+.seenColors,
+.seenFavColors {
   display: block;
   width: 100vw;
   font-size: 4rem;
+  margin-top: 5rem;
   overflow: visible;
+  font-weight: 600;
 }
 
-.seenColors div {
+.seenFavColors {
+  margin-top: 2rem;
+}
+
+.seenColors div,
+.seenFavColors div {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  margin: 1rem auto 1rem auto;
+  max-width: 50vw;
 }
 
 .seenColorsLine {
@@ -315,22 +327,33 @@ canvas {
   padding: 0.1rem;
   background: rgba(0, 0, 0, 0.25);
   width: 50vw;
+  border-radius: 5rem;
+}
+
+.white {
+  color: white;
+  overflow-x: visible;
+  font-size: 5rem;
 }
 
 .card {
+  color: black;
   background: white;
   border-radius: 1rem;
   filter: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 0.25));
-  background: rgba(255, 0, 0, 0.432);
+  /* background: rgba(255, 0, 0, 0.432); */
   margin: 1rem;
 }
 
 .card p {
+  color: black;
+  filter: drop-shadow(0 0 0.05rem rgba(0, 0, 0, 0.25));
   background: white;
   width: 8rem;
   margin-top: 5rem;
   padding: 0.5rem;
   font-size: 1rem;
+  font-weight: 400;
 }
 
 @media only screen and (max-width: 1400px) {
