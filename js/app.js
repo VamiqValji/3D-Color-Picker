@@ -512,29 +512,53 @@ let viewColorsPage = document.getElementById("viewColorsPage");
 let xBtn = document.getElementById("x");
 
 let seenColorsCards = document.getElementById("seenColorsCards");
+let seenFavColorsCards = document.getElementById("seenFavColorsCards");
 
 // gsap.to("#viewColorsPageContainer", uiAnimationOff);
+
+const renderSeenColors = () => {
+  let displayColors = [];
+  let tempList = seenColors.map((color) => {
+    displayColors.push(`<div class="card" style='background:#${color.replace(
+      "0x",
+      ""
+    )};'>
+    <p>
+      ${color.replace("0x", "")}
+      <br />
+      ${hexToRGB(color.replace("0x", ""))}
+    </p>
+    </div>`);
+  });
+  seenColorsCards.innerHTML = `<div class='white'>${displayColors}</div>`;
+  displayColors = [];
+};
+
+const renderFavColors = () => {
+  let displayColors = [];
+  let tempList = favoriteColors.map((color) => {
+    displayColors.push(`<div class="card" style='background:#${color.replace(
+      "0x",
+      ""
+    )};'>
+    <p>
+      ${color.replace("0x", "")}
+      <br />
+      ${hexToRGB(color.replace("0x", ""))}
+    </p>
+    </div>`);
+  });
+  seenFavColorsCards.innerHTML = `<div class='white'>${displayColors}</div>`;
+  displayColors = [];
+};
 
 const viewPageFunc = () => {
   if (isViewPageActive) {
     gsap.to("#viewColorsPageContainer", uiAnimationOff);
     isViewPageActive = false;
   } else {
-    let displayColors = [];
-    let tempList = seenColors.map((color) => {
-      displayColors.push(`<div class="card" style='background:#${color.replace(
-        "0x",
-        ""
-      )};'>
-      <p>
-        ${color.replace("0x", "")}
-        <br />
-        ${hexToRGB(color.replace("0x", ""))}
-      </p>
-      </div>`);
-    });
-    seenColorsCards.innerHTML = `<div class='white'>${displayColors}</div>`;
-    displayColors = [];
+    renderSeenColors();
+    renderFavColors();
     gsap.to("#viewColorsPageContainer", uiAnimationOn);
     isViewPageActive = true;
   }
