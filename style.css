@@ -320,6 +320,7 @@ canvas {
   justify-content: center;
   margin: 1rem auto 1rem auto;
   max-width: 50vw;
+  filter: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 0.2));
 }
 
 .seenColorsLine {
@@ -330,24 +331,18 @@ canvas {
   border-radius: 5rem;
 }
 
-.white {
-  color: white;
-  overflow-x: visible;
-  font-size: 5rem;
-}
-
 .card {
   color: black;
   background: white;
   border-radius: 1rem;
-  filter: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 0.25));
+  /* filter: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 0.25)); */
   /* background: rgba(255, 0, 0, 0.432); */
   margin: 1rem;
 }
 
 .card p {
   color: black;
-  filter: drop-shadow(0 0 0.05rem rgba(0, 0, 0, 0.25));
+  /* filter: drop-shadow(0 0 0.05rem rgba(0, 0, 0, 0.25)); */
   background: white;
   width: 8rem;
   margin-top: 5rem;
@@ -360,13 +355,15 @@ canvas {
   font-size: 1rem;
   display: flex;
   position: absolute;
-  right: 0.5rem;
-  top: 0.4rem;
+  right: 0.2rem;
+  top: 0.1rem;
   display: block;
   float: right;
   color: rgba(0, 0, 0, 0.5);
   transition: 0.25s;
   cursor: pointer;
+  padding: 0.3rem;
+  /* filter: drop-shadow(0 0 0.5rem rgba(255, 255, 255, 0.1)); */
 }
 
 .trash:hover {

@@ -153,6 +153,7 @@ const changeColor = (randColor) => {
   // add to lists
 
   if (seenColors.includes(randColor) == false) {
+    seenColors = seenColors.filter((color) => color !== randColor);
     seenColors.push(randColor);
   }
 
@@ -491,6 +492,7 @@ const addStarsFunc = () => {
   } else {
     console.log("test");
     starsDiv.innerHTML = fullStar;
+    favoriteColors = favoriteColors.filter((color) => color !== randomColor);
     favoriteColors.push(randomColor);
     starsBool = true;
   }
@@ -517,88 +519,50 @@ let seenFavColorsCards = document.getElementById("seenFavColorsCards");
 // gsap.to("#viewColorsPageContainer", uiAnimationOff);
 
 const renderSeenColors = () => {
-  let displayColors = [];
-  let tempList = seenColors.map((color) => {
-    displayColors.push(`<div class="card seenCard" style='background:#${color.replace(
-      "0x",
-      ""
-    )};'>
-    <p>
-      ${color.replace("0x", "")}
-      <br />
-      ${hexToRGB(color.replace("0x", ""))}
-      <br />
-      <span class='trash'><i class="fas fa-trash"></i></span></p>
-    </div>`);
-  });
-  seenColorsCards.innerHTML = `<div class='white'>${displayColors}</div>`;
-  displayColors = [];
+  let container = document.getElementById("seenColorsCards");
+
+  for (let i = 0; i < seenColors.length; i++) {
+    let div = document.createElement("div");
+    div.addEventListener("click", () => {
+      div.remove();
+      seenColors.splice(seenColors.indexOf(seenColors[i]), 1);
+      console.log(seenColors);
+    });
+    div.innerHTML = `<div class="card seenCard" style='background:#${seenColors[
+      i
+    ].replace("0x", "")};'>
+      <p>
+        ${seenColors[i].replace("0x", "")}
+        <br />
+        ${hexToRGB(seenColors[i].replace("0x", ""))}
+        <br />
+        <span class='trash'><i class="fas fa-trash"></i></span></p>
+      </div>`;
+    container.appendChild(div);
+  }
 };
 
 const renderFavColors = () => {
-  let displayColors = [];
-  let tempList = favoriteColors.map((color) => {
-    displayColors.push(`<div class="card favCard" style='background:#${color.replace(
-      "0x",
-      ""
-    )};'>
-    <p>
-      ${color.replace("0x", "")}
-      <br />
-      ${hexToRGB(color.replace("0x", ""))}
-      <br />
-      <span class='trash'><i class="fas fa-trash"></i></span></p>
-    </div>`);
-  });
-  seenFavColorsCards.innerHTML = `<div class='white'>${displayColors}</div>`;
-  displayColors = [];
-};
+  let container = document.getElementById("seenFavColorsCards");
 
-const addCardEventListeners = () => {
-  let seenCards = document.getElementsByClassName("seenCard");
-  let favCards = document.getElementsByClassName("favCard");
-  for (let i = 0; i < favCards.length; i++) {
-    favCards[i].addEventListener("click", () => {
-      let clickedCardColor = favCards[i].innerHTML
-        .slice(9, 21)
-        .replace(" ", "")
-        .slice(5, 11);
-
-      favoriteColors = favoriteColors.filter(
-        (color) => color !== clickedCardColor
-      );
-      // try {
-      //   favCards[i].remove();
-      // } catch {
-      //   favCards[i - 1].remove();
-      // }
-      let white = document.querySelector("white");
-      favCards[i].innerHTML = "";
-      document.querySelector("white").innerHTML = "";
-      console.log(favCards[i]);
-      // favCards[i].remove();
+  for (let i = 0; i < favoriteColors.length; i++) {
+    let div = document.createElement("div");
+    div.addEventListener("click", () => {
+      div.remove();
+      favoriteColors.splice(favoriteColors.indexOf(favoriteColors[i]), 1);
+      console.log(favoriteColors);
     });
-  }
-  for (let i = 0; i < seenColors.length; i++) {
-    seenCards[i].addEventListener("click", () => {
-      let clickedCardColor = seenCards[i].innerHTML
-        .slice(9, 21)
-        .replace(" ", "")
-        .slice(5, 11);
-
-      console.log(clickedCardColor);
-
-      seenColors = seenColors.filter((color) => color !== clickedCardColor);
-      // try {
-      //   seenCards[i - 1].remove();
-      // } catch {
-      //   seenCards[i].remove();
-      // }
-      let white = document.querySelector("white");
-      seenCards[i].innerHTML = "";
-      white.innerHTML = "";
-      console.log(seenCards[i]);
-    });
+    div.innerHTML = `<div class="card seenCard" style='background:#${favoriteColors[
+      i
+    ].replace("0x", "")};'>
+      <p>
+        ${favoriteColors[i].replace("0x", "")}
+        <br />
+        ${hexToRGB(favoriteColors[i].replace("0x", ""))}
+        <br />
+        <span class='trash'><i class="fas fa-trash"></i></span></p>
+      </div>`;
+    container.appendChild(div);
   }
 };
 
@@ -609,7 +573,7 @@ const viewPageFunc = () => {
   } else {
     renderSeenColors();
     renderFavColors();
-    addCardEventListeners();
+    // addCardEventListeners();
     gsap.to("#viewColorsPageContainer", uiAnimationOn);
     isViewPageActive = true;
   }
@@ -641,5 +605,4 @@ xBtn.addEventListener("click", viewPageFunc);
 // ];
 // renderSeenColors();
 // renderFavColors();
-// addCardEventListeners();
 //TESTING DELETE AFTER
