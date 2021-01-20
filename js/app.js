@@ -389,20 +389,39 @@ colorValueBtn.addEventListener("click", displayColorValueFunc);
 let copyBtn = document.getElementById("copy");
 let valuePlaceHolder = document.getElementById("valuePlaceholder");
 
-const copyToClipboard = () => {
+let customAlertHTML = document.getElementById("customAlert");
+gsap.to("#customAlert", { opacity: 0 });
+const customAlert = (value, copied = true) => {
+  if (value.includes("0x")) {
+    value = value.replace("0x", "");
+  }
+  if (copied) {
+    customAlertHTML.innerHTML = `<li><span class='copy1'><i class="fas fa-copy"></i></span>${value} Copied!</li>`;
+  } else {
+    customAlertHTML.innerHTML = `<li><span class='trash'><i class="fas fa-trash"></i></span>${value} Deleted!</li>`;
+  }
+  gsap.fromTo("#customAlert", { opacity: 1 }, { opacity: 0, duration: 4 });
+  console.log(value);
+  console.log(copied);
+};
+
+const copyToClipboard = (color, ALERT = true) => {
   let selectCopyValue = document.getElementById("selectCopyValue");
   // console.log(selectCopyValue.value);
 
   let returnValuePlaceHolder;
+  if (color.includes("0x")) {
+    color = color.replace("0x", "");
+  }
   if (selectCopyValue.value === "RGB") {
     try {
-      returnValuePlaceHolder = `${hexToRGB(randomColor)}`;
+      returnValuePlaceHolder = `${hexToRGB(color)}`;
     } catch {
       returnValuePlaceHolder = `FFFFFF`;
     }
   } else if (selectCopyValue.value === "HEX") {
     try {
-      returnValuePlaceHolder = `${randomColor}`;
+      returnValuePlaceHolder = `${color}`;
     } catch {
       returnValuePlaceHolder = `(255,255,255)`;
     }
@@ -412,11 +431,16 @@ const copyToClipboard = () => {
   valuePlaceHolder.select();
   valuePlaceHolder.setSelectionRange(0, 99999);
   document.execCommand("copy");
-
-  alert(`'${returnValuePlaceHolder}' copied.`);
+  if (ALERT) {
+    alert(`'${returnValuePlaceHolder}' copied.`);
+  } else {
+    customAlert(returnValuePlaceHolder);
+  }
 };
 
-copyBtn.addEventListener("click", copyToClipboard);
+copyBtn.addEventListener("click", () => {
+  copyToClipboard(randomColor);
+});
 
 // ui off btn
 
@@ -443,6 +467,7 @@ const uiFunc = () => {
     gsap.to("#title", uiAnimationOff);
     gsap.to(".changeColorBtn", uiAnimationOff);
     gsap.to("#stars", uiAnimationOff);
+    gsap.to("#customAlert", uiAnimationOff);
     gsap.to("#footer", uiAnimationOff);
     UIBtn.innerHTML = "UI On";
     uiBool = false;
@@ -451,6 +476,7 @@ const uiFunc = () => {
     gsap.to("#title", uiAnimationOn);
     gsap.to(".changeColorBtn", uiAnimationOn);
     gsap.to("#stars", uiAnimationOn);
+    gsap.to("#customAlert", uiAnimationOn);
     gsap.to("#footer", uiAnimationOn);
     UIBtn.innerHTML = "UI Off";
     uiBool = true;
@@ -521,12 +547,23 @@ let seenFavColorsCards = document.getElementById("seenFavColorsCards");
 const renderSeenColors = () => {
   let container = document.getElementById("seenColorsCards");
 
+  if (seenColors.length === 0) {
+    container.innerHTML =
+      "<div class='nothingHere'>Nothing to see here! Go look at some colors!</div>";
+  } else {
+    container.innerHTML = "";
+  }
+
   for (let i = 0; i < seenColors.length; i++) {
     let div = document.createElement("div");
-    div.addEventListener("click", () => {
+    div.addEventListener("dblclick", () => {
       div.remove();
       seenColors.splice(seenColors.indexOf(seenColors[i]), 1);
+      customAlert(seenColors[i], false);
       console.log(seenColors);
+    });
+    div.addEventListener("click", () => {
+      copyToClipboard(seenColors[i], false);
     });
     div.innerHTML = `<div class="card seenCard" style='background:#${seenColors[
       i
@@ -536,7 +573,7 @@ const renderSeenColors = () => {
         <br />
         ${hexToRGB(seenColors[i].replace("0x", ""))}
         <br />
-        <span class='trash'><i class="fas fa-trash"></i></span></p>
+        </p>
       </div>`;
     container.appendChild(div);
   }
@@ -545,12 +582,23 @@ const renderSeenColors = () => {
 const renderFavColors = () => {
   let container = document.getElementById("seenFavColorsCards");
 
+  if (favoriteColors.length === 0) {
+    container.innerHTML =
+      "<div class='nothingHere'>Nothing to see here! Go favorite some colors!</div>";
+  } else {
+    container.innerHTML = "";
+  }
+
   for (let i = 0; i < favoriteColors.length; i++) {
     let div = document.createElement("div");
-    div.addEventListener("click", () => {
+    div.addEventListener("dblclick", () => {
       div.remove();
       favoriteColors.splice(favoriteColors.indexOf(favoriteColors[i]), 1);
+      customAlert(favoriteColors[i], false);
       console.log(favoriteColors);
+    });
+    div.addEventListener("click", () => {
+      copyToClipboard(favoriteColors[i].replace("0x", ""), false);
     });
     div.innerHTML = `<div class="card seenCard" style='background:#${favoriteColors[
       i
@@ -560,11 +608,15 @@ const renderFavColors = () => {
         <br />
         ${hexToRGB(favoriteColors[i].replace("0x", ""))}
         <br />
-        <span class='trash'><i class="fas fa-trash"></i></span></p>
+      </p>
       </div>`;
     container.appendChild(div);
   }
 };
+
+/*<span class='trash'><i class="fas fa-trash"></i></span>
+<span class='copy1'><i class="fas fa-copy"></i></span>
+<span class='copy2'><i class="fas fa-copy"></i>*/
 
 const viewPageFunc = () => {
   if (isViewPageActive) {

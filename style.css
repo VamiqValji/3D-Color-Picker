@@ -323,6 +323,11 @@ canvas {
   filter: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 0.2));
 }
 
+/* #seenFavColorsCards,
+#seenColorsCards {
+  justify-items: center;
+} */
+
 .seenColorsLine {
   margin: auto;
   padding: 0.1rem;
@@ -342,7 +347,7 @@ canvas {
 
 .card p {
   color: black;
-  /* filter: drop-shadow(0 0 0.05rem rgba(0, 0, 0, 0.25)); */
+  filter: drop-shadow(0 0 0.05rem rgba(0, 0, 0, 0.25));
   background: white;
   width: 8rem;
   margin-top: 5rem;
@@ -351,7 +356,20 @@ canvas {
   font-weight: 400;
 }
 
-.trash {
+.nothingHere {
+  filter: drop-shadow(0rem 0rem 0rem black);
+  display: flex;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.cardCopyBtn {
+  color: black;
+}
+
+/* .trash,
+.copy1,
+.copy2 {
   font-size: 1rem;
   display: flex;
   position: absolute;
@@ -363,11 +381,44 @@ canvas {
   transition: 0.25s;
   cursor: pointer;
   padding: 0.3rem;
-  /* filter: drop-shadow(0 0 0.5rem rgba(255, 255, 255, 0.1)); */
+  /* filter: drop-shadow(0 0 0.5rem rgba(255, 255, 255, 0.1)); 
 }
 
-.trash:hover {
+.copy1 {
+  display: flex;
+  position: absolute;
+  bottom: 0rem;
+  left: 0rem;
+}
+
+.trash:hover,
+.copy1:hover,
+.copy2:hover {
   color: black;
+} */
+
+#customAlert {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  filter: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 0.25));
+  bottom: 0rem;
+  right: 0rem;
+  margin: 1rem;
+  z-index: 2;
+  list-style: none;
+  font-size: 1.3rem;
+}
+
+#customAlert li {
+  font-weight: 600;
+}
+
+#customAlert span {
+  margin-right: 1rem;
 }
 
 @media only screen and (max-width: 1400px) {
