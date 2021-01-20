@@ -392,9 +392,7 @@ let valuePlaceHolder = document.getElementById("valuePlaceholder");
 let customAlertHTML = document.getElementById("customAlert");
 gsap.to("#customAlert", { opacity: 0 });
 const customAlert = (value, copied = true) => {
-  if (value.includes("0x")) {
-    value = value.replace("0x", "");
-  }
+  value = value.replace("0x", "");
   if (copied) {
     customAlertHTML.innerHTML = `<li><span class='copy1'><i class="fas fa-copy"></i></span>${value} Copied!</li>`;
   } else {
@@ -410,9 +408,7 @@ const copyToClipboard = (color, ALERT = true) => {
   // console.log(selectCopyValue.value);
 
   let returnValuePlaceHolder;
-  if (color.includes("0x")) {
-    color = color.replace("0x", "");
-  }
+  color = color.replace("0x", "");
   if (selectCopyValue.value === "RGB") {
     try {
       returnValuePlaceHolder = `${hexToRGB(color)}`;

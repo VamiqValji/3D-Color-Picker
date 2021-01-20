@@ -299,6 +299,33 @@ canvas {
   font-size: 2rem;
 }
 
+#subtitle1 {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+#subtitle1 i {
+  display: block;
+  height: 3rem;
+  overflow: hidden;
+}
+
+#subtitle1 span {
+  font-weight: 400;
+  margin-left: 1rem;
+}
+
+#subtitle1 div {
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+}
+
+.subtitle1Container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: 2rem;
+}
+
 .seenColors,
 .seenFavColors {
   display: block;
