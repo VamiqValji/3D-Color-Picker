@@ -26,6 +26,26 @@ let prevColorBool = true;
 let seenColors = ["ffffff"];
 let favoriteColors = [];
 
+// Initialize seenColors
+// try {
+//   let localColors = localStorage.getItem("sColors");
+//   if (localColors !== null) {
+//     seenColors = localColors;
+//   }
+// } catch (err) {
+//   console.log(err);
+// }
+
+// // Initialize favoriteColors
+// try {
+//   let localColors = localStorage.getItem("fColors");
+//   if (localColors !== null) {
+//     favoriteColors = localColors;
+//   }
+// } catch (err) {
+//   console.log(err);
+// }
+
 // stars
 
 let starsBool = false;
@@ -201,6 +221,8 @@ const changeColor = (randColor) => {
   }
   count++;
 
+  localStorage.setItem("sColors", seenColors);
+
   displayColorsControllers();
 };
 
@@ -268,8 +290,10 @@ let lockBool = false;
 const lockBtnFunc = () => {
   // lockBool = true ? false : true;
   if (lockBool === false) {
+    lockBtn.innerHTML = "Unlock Camera Position";
     lockBool = true;
   } else {
+    lockBtn.innerHTML = "Lock Camera Position";
     lockBool = false;
   }
 };
@@ -309,30 +333,47 @@ colorsHolder.id = "colors";
 // let colorsHolder = document.getElementById("colors");
 
 const displayColorsControllers = () => {
-  // console.log(displayColorValueBool, prevColorBool);
-  const addCurrentColor = () => {
+  let selectCopyValue = document.getElementById("selectCopyValue");
+
+  const addCurrentColor = (hexOrRGB) => {
     // current
     try {
-      colorValueTxt.innerHTML = `${randomColor}<br>${hexToRGB(randomColor)}`;
+      if (hexOrRGB === "HEX") {
+        colorValueTxt.innerHTML = `Current: ${randomColor
+          .replace("(", "")
+          .replace(")", "")}`;
+      } else {
+        colorValueTxt.innerHTML = `Current: ${hexToRGB(randomColor)
+          .replace("(", "")
+          .replace(")", "")}`;
+      }
     } catch {
-      colorValueTxt.innerHTML = `FFFFFF<br>(255,255,255)`;
+      if (hexOrRGB === "HEX") {
+        colorValueTxt.innerHTML = `Current: FFFFFF`;
+      } else {
+        colorValueTxt.innerHTML = `Current: 255,255,255`;
+      }
     }
   };
 
-  const addPrevColor = (which = "") => {
+  const addPrevColor = (hexOrRGB) => {
     // prev
     try {
-      if (which === "") {
-        prevColorText.innerHTML = `Previous: ${previousColor}<br>${hexToRGB(
-          previousColor
-        )}`;
+      if (hexOrRGB === "HEX") {
+        prevColorText.innerHTML = `Previous: ${previousColor
+          .replace("(", "")
+          .replace(")", "")}`;
       } else {
-        colorValueTxt.innerHTML = `Previous: ${previousColor}<br>${hexToRGB(
-          previousColor
-        )}`;
+        prevColorText.innerHTML = `Previous: ${hexToRGB(previousColor)
+          .replace("(", "")
+          .replace(")", "")}`;
       }
     } catch {
-      prevColorText.innerHTML = `FFFFFF<br>(255,255,255)`;
+      if (hexOrRGB === "HEX") {
+        prevColorText.innerHTML = `Previous: FFFFFF`;
+      } else {
+        prevColorText.innerHTML = `Previous: 255,255,255`;
+      }
     }
   };
 
@@ -349,19 +390,8 @@ const displayColorsControllers = () => {
 
   // add both
   if (displayColorValueBool == true && prevColorBool == true) {
-    addCurrentColor();
-    addPrevColor();
-    // console.log("1");
-    // } else if (displayColorValueBool == true && prevColorBool == false) {
-    //   // colorsHolder.innerHTML = `${addCurrentColor()}`;
-    //   addCurrentColor();
-    //   remove("previous");
-    //   console.log("2");
-    // } else if (displayColorValueBool == false && prevColorBool == true) {
-    //   // colorsHolder.innerHTML = `${addPrevColor()}`;
-    //   addPrevColor("moveUp");
-    //   remove("current");
-    //   console.log("3");
+    addCurrentColor(selectCopyValue);
+    addPrevColor(selectCopyValue);
   } else {
     // colorsHolder.innerHTML = ``;
     remove("both");
@@ -398,7 +428,11 @@ const customAlert = (value, copied = true) => {
   } else {
     customAlertHTML.innerHTML = `<li><span class='trash'><i class="fas fa-trash"></i></span>${value} Deleted!</li>`;
   }
-  gsap.fromTo("#customAlert", { opacity: 1 }, { opacity: 0, duration: 4 });
+  gsap.fromTo(
+    "#customAlert",
+    { opacity: 1, display: "flex" },
+    { opacity: 0, duration: 4, display: "none" }
+  );
   console.log(value);
   console.log(copied);
 };
@@ -435,7 +469,7 @@ const copyToClipboard = (color, ALERT = true) => {
 };
 
 copyBtn.addEventListener("click", () => {
-  copyToClipboard(randomColor);
+  copyToClipboard(randomColor, false);
 });
 
 // ui off btn
@@ -464,6 +498,9 @@ const uiFunc = () => {
     gsap.to(".changeColorBtn", uiAnimationOff);
     gsap.to("#stars", uiAnimationOff);
     gsap.to("#customAlert", uiAnimationOff);
+    gsap.to("#copy", uiAnimationOff);
+    gsap.to("#colors", uiAnimationOff);
+    gsap.to("#selectCopyValueContainer", uiAnimationOff);
     gsap.to("#footer", uiAnimationOff);
     UIBtn.innerHTML = "UI On";
     uiBool = false;
@@ -472,7 +509,10 @@ const uiFunc = () => {
     gsap.to("#title", uiAnimationOn);
     gsap.to(".changeColorBtn", uiAnimationOn);
     gsap.to("#stars", uiAnimationOn);
-    gsap.to("#customAlert", uiAnimationOn);
+    // gsap.to("#customAlert", uiAnimationOn);
+    gsap.to("#colors", uiAnimationOn);
+    gsap.to("#selectCopyValueContainer", uiAnimationOn);
+    gsap.to("#copy", uiAnimationOn);
     gsap.to("#footer", uiAnimationOn);
     UIBtn.innerHTML = "UI Off";
     uiBool = true;

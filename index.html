@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A 3D environment color picker tool with customizability!"
+    />
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -28,19 +32,9 @@
         <div class="dropDownHolder">
           <div class="dropDownContainer">
             <li id="resetBtn">Reset Position</li>
-            <li id="lockBtn">Lock Position</li>
+            <li id="lockBtn">Lock Camera Position</li>
             <li id="colorValueBtn">Display Color Values</li>
             <!-- <li id="prevColorBtn">Display Previous Color</li> -->
-            <li id="copyBtn">
-              <p>
-                <span id="copy"> Copy To Clipboard</span> <br />
-                <select id="selectCopyValue">
-                  <option value="HEX">HEX</option>
-                  <option value="RGB" selected>RGB</option>
-                </select>
-                <textarea id="valuePlaceholder"></textarea>
-              </p>
-            </li>
             <li id="UIBtn">UI Off</li>
             <li id="viewSeenColors">View Seen Colors</li>
           </div>
@@ -59,7 +53,7 @@
                 </div>
                 <div>
                   <i class="fas fa-trash"
-                    ><span>Click a card to delete it!</span></i
+                    ><span>Double click a card to delete it!</span></i
                   >
                 </div>
               </div>
@@ -93,6 +87,19 @@
           </div>
         </div>
       </div>
+      <!-- <li id="copyBtn"> -->
+      <!-- <p> -->
+      <div id="selectCopyValueContainer">
+        Preference:
+        <select id="selectCopyValue">
+          <option value="HEX">HEX</option>
+          <option value="RGB" selected>RGB</option>
+        </select>
+      </div>
+      <textarea id="valuePlaceholder"></textarea>
+      <!-- </p> -->
+      <!-- </li> -->
+      <span id="copy"><i class="fas fa-copy"></i></span>
       <div id="stars">
         <!-- <i class="fas fa-star"></i>
         <i class="far fa-star"></i> -->

@@ -112,7 +112,7 @@ canvas {
 
 .burger {
   display: block;
-  z-index: 1;
+  z-index: 3;
   /* background: black;
   border-radius: 0.3rem; */
 }
@@ -157,14 +157,13 @@ canvas {
 
 .dropDown,
 .dropDown:hover {
-  z-index: 0;
   position: absolute;
   display: flex;
   background: black;
   width: 20rem;
   height: 100%;
   border-radius: 0rem 1rem 1rem 0rem;
-  z-index: 0;
+  z-index: 1;
 }
 
 .dropDown .dropDownContainer {
@@ -231,7 +230,7 @@ canvas {
 }
 
 #prevColorText {
-  margin: 4rem 1rem 1rem 1rem;
+  margin: 3rem 1rem 1rem 1rem;
 }
 
 #footer {
@@ -243,6 +242,21 @@ canvas {
   margin: 1rem;
   bottom: 0;
   right: 0;
+}
+
+#copy {
+  display: flex;
+  position: absolute;
+  bottom: 2rem;
+  margin: 1rem;
+  right: 4rem;
+  color: rgba(0, 0, 0, 0.9);
+  font-size: 3rem;
+  transition: 0.1s;
+}
+
+#copy:hover {
+  color: rgba(0, 0, 0, 1);
 }
 
 #selectCopyValue {
@@ -266,8 +280,26 @@ canvas {
   bottom: 2rem;
   margin: 1rem;
   right: 0rem;
-  color: yellow;
+  color: rgba(0, 0, 0, 0.9);
   font-size: 3rem;
+}
+
+#stars:hover {
+  color: rgba(0, 0, 0, 1);
+}
+
+#selectCopyValueContainer {
+  display: flex;
+  position: absolute;
+  margin: 1rem;
+  bottom: 0rem;
+  font-size: 1.7em;
+  z-index: 0;
+}
+
+#selectCopyValueContainer select {
+  margin-left: 0.3rem;
+  z-index: inherit;
 }
 
 #viewSeenColors {
@@ -285,7 +317,7 @@ canvas {
   height: 100%;
   width: 100vw;
   background: white;
-  z-index: 2;
+  z-index: 5;
 }
 
 #viewColorsPage {
@@ -301,17 +333,27 @@ canvas {
 
 #subtitle1 {
   color: rgba(0, 0, 0, 0.75);
+  /* filter: drop-shadow(0rem 0rem 0rem black); */
 }
 
 #subtitle1 i {
   display: block;
-  height: 3rem;
+  height: auto;
   overflow: hidden;
 }
 
+#subtitle1 i:last-child {
+  margin-top: 0.5rem;
+}
+
 #subtitle1 span {
-  font-weight: 400;
+  font-weight: 300;
   margin-left: 1rem;
+  transition: 0.1s;
+}
+
+#subtitle1 span:hover {
+  color: black;
 }
 
 #subtitle1 div {
@@ -435,9 +477,10 @@ canvas {
   bottom: 0rem;
   right: 0rem;
   margin: 1rem;
-  z-index: 2;
+  z-index: 6;
   list-style: none;
   font-size: 1.3rem;
+  pointer-events: none;
 }
 
 #customAlert li {
