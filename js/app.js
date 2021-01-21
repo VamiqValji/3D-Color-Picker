@@ -27,24 +27,24 @@ let seenColors = ["ffffff"];
 let favoriteColors = [];
 
 // Initialize seenColors
-// try {
-//   let localColors = localStorage.getItem("sColors");
-//   if (localColors !== null) {
-//     seenColors = localColors;
-//   }
-// } catch (err) {
-//   console.log(err);
-// }
+try {
+  let localColors = localStorage.getItem("sColors");
+  if (localColors !== null && localColors.length > 0) {
+    seenColors = localColors.split(",");
+  }
+} catch (err) {
+  console.log(err);
+}
 
-// // Initialize favoriteColors
-// try {
-//   let localColors = localStorage.getItem("fColors");
-//   if (localColors !== null) {
-//     favoriteColors = localColors;
-//   }
-// } catch (err) {
-//   console.log(err);
-// }
+// Initialize favoriteColors
+try {
+  let localColors = localStorage.getItem("fColors");
+  if (localColors !== null && localColors.length > 0) {
+    favoriteColors = localColors.split(",");
+  }
+} catch (err) {
+  console.log(err);
+}
 
 // stars
 
@@ -393,9 +393,7 @@ const displayColorsControllers = () => {
     addCurrentColor(selectCopyValue);
     addPrevColor(selectCopyValue);
   } else {
-    // colorsHolder.innerHTML = ``;
     remove("both");
-    // console.log("4");
   }
 };
 
@@ -556,6 +554,7 @@ const addStarsFunc = () => {
     starsDiv.innerHTML = fullStar;
     favoriteColors = favoriteColors.filter((color) => color !== randomColor);
     favoriteColors.push(randomColor);
+    localStorage.setItem("fColors", favoriteColors);
     starsBool = true;
   }
 };
@@ -578,11 +577,10 @@ let xBtn = document.getElementById("x");
 let seenColorsCards = document.getElementById("seenColorsCards");
 let seenFavColorsCards = document.getElementById("seenFavColorsCards");
 
-// gsap.to("#viewColorsPageContainer", uiAnimationOff);
+gsap.to("#viewColorsPageContainer", uiAnimationOff);
 
 const renderSeenColors = () => {
   let container = document.getElementById("seenColorsCards");
-
   if (seenColors.length === 0) {
     container.innerHTML =
       "<div class='nothingHere'>Nothing to see here! Go look at some colors!</div>";
@@ -595,11 +593,15 @@ const renderSeenColors = () => {
     div.addEventListener("dblclick", () => {
       div.remove();
       seenColors.splice(seenColors.indexOf(seenColors[i]), 1);
-      customAlert(seenColors[i], false);
-      console.log(seenColors);
+      customAlert(seenColors[seenColors.indexOf(seenColors[i])], false);
+      console.log(seenColors[seenColors.indexOf(seenColors[i])]);
+      localStorage.setItem("sColors", seenColors);
     });
     div.addEventListener("click", () => {
-      copyToClipboard(seenColors[i], false);
+      // console.log(seenColors);
+      // console.log(seenColors[i]);
+      // console.log(i);
+      copyToClipboard(seenColors[seenColors.indexOf(seenColors[i])], false);
     });
     div.innerHTML = `<div class="card seenCard" style='background:#${seenColors[
       i
@@ -617,7 +619,6 @@ const renderSeenColors = () => {
 
 const renderFavColors = () => {
   let container = document.getElementById("seenFavColorsCards");
-
   if (favoriteColors.length === 0) {
     container.innerHTML =
       "<div class='nothingHere'>Nothing to see here! Go favorite some colors!</div>";
@@ -628,15 +629,34 @@ const renderFavColors = () => {
   for (let i = 0; i < favoriteColors.length; i++) {
     let div = document.createElement("div");
     div.addEventListener("dblclick", () => {
+      // favoriteColors.splice(favoriteColors.indexOf(favoriteColors[i]), 1);
+      // customAlert(
+      //   favoriteColors[favoriteColors.indexOf(favoriteColors[i])],
+      //   false
+      // );
+      // localStorage.setItem("fColors", favoriteColors);
+      // div.remove();
       div.remove();
       favoriteColors.splice(favoriteColors.indexOf(favoriteColors[i]), 1);
-      customAlert(favoriteColors[i], false);
-      console.log(favoriteColors);
+      customAlert(
+        favoriteColors[favoriteColors.indexOf(favoriteColors[i])],
+        false
+      );
+      localStorage.setItem("sColors", favoriteColors);
     });
     div.addEventListener("click", () => {
-      copyToClipboard(favoriteColors[i].replace("0x", ""), false);
+      // console.log(favoriteColors);
+      // console.log(favoriteColors[i]);
+      // console.log(i);
+      console.log(
+        `     ${favoriteColors[favoriteColors.indexOf(favoriteColors[i])]}`
+      );
+      copyToClipboard(
+        favoriteColors[favoriteColors.indexOf(favoriteColors[i])],
+        false
+      );
     });
-    div.innerHTML = `<div class="card seenCard" style='background:#${favoriteColors[
+    div.innerHTML = `<div class="card favCard" style='background:#${favoriteColors[
       i
     ].replace("0x", "")};'>
       <p>
