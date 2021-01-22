@@ -69,15 +69,15 @@ canvas {
   position: absolute;
   cursor: pointer;
   /* width: 15rem;
-  padding: 2rem;
-  z-index: 1; */
+    padding: 2rem;
+    z-index: 1; */
 }
 
 .burger {
   display: block;
   z-index: 3;
   /* background: black;
-  border-radius: 0.3rem; */
+    border-radius: 0.3rem; */
 }
 
 .line1,
@@ -98,25 +98,25 @@ canvas {
 }
 
 /* .drop .line1 {
-  transform: rotateZ(45deg) translate(0%, 500%);
-  background: rebeccapurple;
-}
-
-.drop .line2 {
-  background: coral;
-  opacity: 0;
-}
-
-.drop .line3 {
-  transform: rotateZ(-45deg) translate(0%, 500%);
-  background: crimson;
-} */
+    transform: rotateZ(45deg) translate(0%, 500%);
+    background: rebeccapurple;
+  }
+  
+  .drop .line2 {
+    background: coral;
+    opacity: 0;
+  }
+  
+  .drop .line3 {
+    transform: rotateZ(-45deg) translate(0%, 500%);
+    background: crimson;
+  } */
 
 /* #burgerContainer .line1,
-#burgerContainer .line2,
-#burgerContainer .line3 {
-  background: white;
-} */
+  #burgerContainer .line2,
+  #burgerContainer .line3 {
+    background: white;
+  } */
 
 .dropDown,
 .dropDown:hover {
@@ -510,9 +510,8 @@ canvas {
     font-size: 1.3em;
     padding: 0.2rem;
     /* margin: 1rem auto 4rem auto;
-    font-size: 1.2em; */
+      font-size: 1.2em; */
   }
-
   .footerContainer,
   #footer {
     margin: auto;

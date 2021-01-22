@@ -330,7 +330,8 @@ colorsHolder.id = "colors";
 // let colorsHolder = document.getElementById("colors");
 
 const displayColorsControllers = () => {
-  let selectCopyValue = document.getElementById("selectCopyValue");
+  let SCV = document.getElementById("selectCopyValue");
+  let selectCopyValue = SCV.value;
 
   const addCurrentColor = (hexOrRGB) => {
     // current
@@ -513,20 +514,6 @@ const uiFunc = () => {
 
 UIBtn.addEventListener("click", uiFunc);
 
-// display previous color
-
-// prevColorBtn.addEventListener("click", () => {
-//   if (prevColorBool) {
-//     prevColorBool = false;
-//   } else {
-//     prevColorBool = true;
-//   }
-//   displayColorsControllers();
-//   //   // prevColorBool = (true) ? false : true
-// });
-
-// stars
-
 const checkStars = () => {
   if (favoriteColors.includes(randomColor)) {
     starsDiv.innerHTML = fullStar;
@@ -544,7 +531,6 @@ const addStarsFunc = () => {
     starsDiv.innerHTML = fullStar;
     favoriteColors = favoriteColors.filter((color) => color !== randomColor);
     favoriteColors.push(randomColor);
-    localStorage.setItem("fColors", favoriteColors);
     starsBool = true;
   }
   localStorage.setItem("fColors", favoriteColors);
@@ -648,10 +634,6 @@ const renderFavColors = () => {
   }
 };
 
-/*<span class='trash'><i class="fas fa-trash"></i></span>
-<span class='copy1'><i class="fas fa-copy"></i></span>
-<span class='copy2'><i class="fas fa-copy"></i>*/
-
 const viewPageFunc = () => {
   if (isViewPageActive) {
     gsap.to("#viewColorsPageContainer", uiAnimationOff);
@@ -668,27 +650,3 @@ const viewPageFunc = () => {
 
 viewSeenBtn.addEventListener("click", viewPageFunc);
 xBtn.addEventListener("click", viewPageFunc);
-
-// TESTING DELETE AFTER
-// seenColors = [
-//   "ffffff",
-//   "0x10bdb6",
-//   "0x6c9dd2",
-//   "0xec5662",
-//   "0xfcb20b",
-//   "0x63f00",
-//   "0x96b5",
-// ];
-
-// favoriteColors = [
-//   "ffffff",
-//   "0x10bdb6",
-//   "0x6c9dd2",
-//   "0xec5662",
-//   "0xfcb20b",
-//   "0x63f00",
-//   "0x96b5",
-// ];
-// renderSeenColors();
-// renderFavColors();
-//TESTING DELETE AFTER
