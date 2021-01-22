@@ -28,11 +28,18 @@ canvas {
   height: 100%;
 }
 
+.copyStars {
+  display: flex;
+  position: ab;
+  flex-direction: column;
+  height: 10rem;
+}
+
 .ui h1 {
   display: flex;
   justify-content: center;
   position: absolute;
-  top: 6.5rem;
+  top: 15%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 5em;
@@ -40,10 +47,8 @@ canvas {
 }
 
 .ui button {
-  display: flex;
   position: absolute;
-  /* top: 85%; */
-  bottom: 5rem;
+  top: 85%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
@@ -450,6 +455,11 @@ canvas {
   #copy {
     margin-right: 1.4rem;
   }
+  .ui button {
+    border-radius: 2rem;
+    padding: 0.5rem;
+    top: 80%;
+  }
 }
 
 @media only screen and (max-width: 900px) {
@@ -484,10 +494,6 @@ canvas {
   .ui h1 {
     margin-top: 2rem;
     font-size: calc(2em);
-  }
-  .ui button {
-    border-radius: 2rem;
-    padding: 0.5rem;
   }
   .dropDown li {
     margin-top: 0.7rem;
