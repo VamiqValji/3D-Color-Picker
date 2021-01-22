@@ -38,13 +38,6 @@ canvas {
   font-weight: 600;
 }
 
-/* .ui button img {
-  width: 2.7rem;
-  height: 2rem;
-  filter: invert(0.5);
-  filter: drop-shadow(0rem 0rem 0.09rem black);
-} */
-
 .ui #dropDownBtn {
   top: 2rem;
   left: 2rem;
@@ -70,27 +63,6 @@ canvas {
   /* border: 0.2rem solid black; */
 }
 
-/* .ui #dropDownBtn {
-  display: block;
-  background: black;
-  z-index: 1;
-  cursor: pointer;
-}
-
-#dropDownBtn .line1 {
-  width: 2rem;
-  height: 0.3rem;
-}
-#dropDownBtn .line2 {
-  margin-top: 1rem;
-  width: 2rem;
-  height: 0.3rem;
-}
-#dropDownBtn .line3 {
-  width: 2rem;
-  height: 0.3rem;
-} */
-
 #burgerContainer {
   margin: 1rem;
   display: flex;
@@ -100,15 +72,6 @@ canvas {
   padding: 2rem;
   z-index: 1; */
 }
-
-/* .burgerTitle {
-  display: flex;
-  justify-content: center;
-  cursor: auto;
-  font-size: 1.2em;
-  font-weight: 600;
-  display: flex;
-} */
 
 .burger {
   display: block;
@@ -201,10 +164,6 @@ canvas {
   margin-top: 5rem;
 }
 
-/* .dropDown li:nth-last-child(0) {
-  margin-bottom: 5rem;
-} */
-
 .dropDown li:hover {
   background: white;
   color: black;
@@ -213,11 +172,6 @@ canvas {
 .ui .drop {
   transition: 0.25s;
 }
-
-/* #colors {
-  position: absolute;
-  display: flex;
-} */
 
 #colorValue,
 #prevColorText {
@@ -329,6 +283,7 @@ canvas {
   position: fixed;
   margin: 1rem;
   font-size: 2rem;
+  z-index: 11;
 }
 
 #subtitle1 {
@@ -392,11 +347,6 @@ canvas {
   filter: drop-shadow(0 0 0.1rem rgba(0, 0, 0, 0.2));
 }
 
-/* #seenFavColorsCards,
-#seenColorsCards {
-  justify-items: center;
-} */
-
 .seenColorsLine {
   margin: auto;
   padding: 0.1rem;
@@ -436,36 +386,6 @@ canvas {
   color: black;
 }
 
-/* .trash,
-.copy1,
-.copy2 {
-  font-size: 1rem;
-  display: flex;
-  position: absolute;
-  right: 0.2rem;
-  top: 0.1rem;
-  display: block;
-  float: right;
-  color: rgba(0, 0, 0, 0.5);
-  transition: 0.25s;
-  cursor: pointer;
-  padding: 0.3rem;
-  /* filter: drop-shadow(0 0 0.5rem rgba(255, 255, 255, 0.1)); 
-}
-
-.copy1 {
-  display: flex;
-  position: absolute;
-  bottom: 0rem;
-  left: 0rem;
-}
-
-.trash:hover,
-.copy1:hover,
-.copy2:hover {
-  color: black;
-} */
-
 #customAlert {
   display: flex;
   flex-direction: column;
@@ -502,7 +422,14 @@ canvas {
   }
   #footer {
     display: flex;
-    font-size: 2em;
+    font-size: 1.2em;
+  }
+  #stars,
+  #copy {
+    margin: 1.4rem 1rem 2rem 2rem;
+  }
+  #copy {
+    margin-right: 1.4rem;
   }
 }
 
@@ -515,6 +442,22 @@ canvas {
     margin-top: 0.8rem;
     font-size: 1.5em;
     border-radius: 2rem;
+  }
+  .seenColors div,
+  .seenFavColors div {
+    max-width: 70vw;
+  }
+  .seenColorsLine {
+    width: 70vw;
+  }
+  #stars,
+  #copy {
+    margin-bottom: 1rem;
+  }
+  #footer {
+    display: flex;
+    font-size: 1em;
+    pointer-events: none;
   }
 }
 
@@ -532,11 +475,64 @@ canvas {
     font-size: 1.5em;
     border-radius: 2rem;
   }
-  /* #selectCopyValue {
-    font-size: 0.6em;
-  } */
+  #selectCopyValueContainer {
+    font-size: 1.3em;
+  }
   .dropDown,
   .dropDown:hover {
     width: 15rem;
+  }
+  .cardsTitle {
+    font-size: 0.5em;
+  }
+  #selectCopyValueContainer span {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  #selectCopyValueContainer {
+    display: flex;
+    justify-content: center;
+  }
+  #stars,
+  #copy {
+    font-size: 1.9em;
+    margin: auto auto 0.2rem 0.2rem;
+  }
+  #copy {
+    margin-right: -0.8rem;
+  }
+  #selectCopyValueContainer {
+    margin: 0;
+    position: fixed;
+    max-height: 3rem;
+    font-size: 1.3em;
+    padding: 0.2rem;
+    /* margin: 1rem auto 4rem auto;
+    font-size: 1.2em; */
+  }
+
+  .footerContainer,
+  #footer {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 200px) {
+  .cardsTitle {
+    font-size: 0.3em;
+  }
+  #subtitle1 i,
+  #subtitle1 span {
+    font-size: 0.8em;
+  }
+  .dropDown li {
+    margin-top: 0.5rem;
+    font-size: 1.3em;
+    border-radius: 1.7rem;
+    width: 50%;
   }
 }
