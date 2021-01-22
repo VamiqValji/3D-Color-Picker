@@ -32,7 +32,7 @@ canvas {
   display: flex;
   justify-content: center;
   position: absolute;
-  top: 15%;
+  top: 6.5rem;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 5em;
@@ -40,8 +40,10 @@ canvas {
 }
 
 .ui button {
+  display: flex;
   position: absolute;
-  top: 85%;
+  /* top: 85%; */
+  bottom: 5rem;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
