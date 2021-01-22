@@ -568,27 +568,29 @@ const renderSeenColors = () => {
   }
 
   for (let i = 0; i < seenColors.length; i++) {
-    let div = document.createElement("div");
-    div.addEventListener("dblclick", () => {
-      div.remove();
-      seenColors.splice(seenColors.indexOf(seenColors[i]), 1);
-      localStorage.setItem("sColors", seenColors);
-      customAlert(seenColors[seenColors.indexOf(seenColors[i])], false);
-    });
-    div.addEventListener("click", () => {
-      copyToClipboard(seenColors[seenColors.indexOf(seenColors[i])], false);
-    });
-    div.innerHTML = `<div class="card seenCard" style='background:#${seenColors[
-      i
-    ].replace("0x", "")};'>
-      <p>
-        ${seenColors[i].replace("0x", "")}
-        <br />
-        ${hexToRGB(seenColors[i].replace("0x", ""))}
-        <br />
-        </p>
-      </div>`;
-    container.appendChild(div);
+    if (i <= 27) {
+      let div = document.createElement("div");
+      div.addEventListener("dblclick", () => {
+        div.remove();
+        seenColors.splice(seenColors.indexOf(seenColors[i]), 1);
+        localStorage.setItem("sColors", seenColors);
+        customAlert(seenColors[seenColors.indexOf(seenColors[i])], false);
+      });
+      div.addEventListener("click", () => {
+        copyToClipboard(seenColors[seenColors.indexOf(seenColors[i])], false);
+      });
+      div.innerHTML = `<div class="card seenCard" style='background:#${seenColors[
+        i
+      ].replace("0x", "")};'>
+        <p>
+          ${seenColors[i].replace("0x", "")}
+          <br />
+          ${hexToRGB(seenColors[i].replace("0x", ""))}
+          <br />
+          </p>
+        </div>`;
+      container.appendChild(div);
+    }
   }
 };
 
@@ -604,33 +606,35 @@ const renderFavColors = () => {
   }
 
   for (let i = 0; i < favoriteColors.length; i++) {
-    let div = document.createElement("div");
-    div.addEventListener("dblclick", () => {
-      div.remove();
-      favoriteColors.splice(favoriteColors.indexOf(favoriteColors[i]), 1);
-      localStorage.setItem("fColors", favoriteColors);
-      customAlert(
-        favoriteColors[favoriteColors.indexOf(favoriteColors[i])],
-        false
-      );
-    });
-    div.addEventListener("click", () => {
-      copyToClipboard(
-        favoriteColors[favoriteColors.indexOf(favoriteColors[i])],
-        false
-      );
-    });
-    div.innerHTML = `<div class="card favCard" style='background:#${favoriteColors[
-      i
-    ].replace("0x", "")};'>
-      <p>
-        ${favoriteColors[i].replace("0x", "")}
-        <br />
-        ${hexToRGB(favoriteColors[i].replace("0x", ""))}
-        <br />
-      </p>
-      </div>`;
-    container.appendChild(div);
+    if (i <= 27) {
+      let div = document.createElement("div");
+      div.addEventListener("dblclick", () => {
+        div.remove();
+        favoriteColors.splice(favoriteColors.indexOf(favoriteColors[i]), 1);
+        localStorage.setItem("fColors", favoriteColors);
+        customAlert(
+          favoriteColors[favoriteColors.indexOf(favoriteColors[i])],
+          false
+        );
+      });
+      div.addEventListener("click", () => {
+        copyToClipboard(
+          favoriteColors[favoriteColors.indexOf(favoriteColors[i])],
+          false
+        );
+      });
+      div.innerHTML = `<div class="card favCard" style='background:#${favoriteColors[
+        i
+      ].replace("0x", "")};'>
+        <p>
+          ${favoriteColors[i].replace("0x", "")}
+          <br />
+          ${hexToRGB(favoriteColors[i].replace("0x", ""))}
+          <br />
+        </p>
+        </div>`;
+      container.appendChild(div);
+    }
   }
 };
 
