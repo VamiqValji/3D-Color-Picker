@@ -281,7 +281,7 @@ canvas {
 }
 
 #viewSeenColors {
-  background: rgba(128, 128, 128, 0.137);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 #viewSeenColors:hover {
@@ -460,6 +460,9 @@ canvas {
     padding: 0.5rem;
     top: 80%;
   }
+  #viewSeenColors {
+    background: rgba(255, 255, 255, 0.2);
+  }
 }
 
 @media only screen and (max-width: 900px) {
@@ -487,6 +490,9 @@ canvas {
     display: flex;
     font-size: 1em;
     pointer-events: none;
+  }
+  #viewSeenColors {
+    background: rgba(255, 255, 255, 0.3);
   }
 }
 
