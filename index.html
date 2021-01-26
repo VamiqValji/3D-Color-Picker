@@ -7,6 +7,7 @@
       name="description"
       content="A 3D environment color picker tool with customizability!"
     />
+    <!-- <link rel="canonical" href="https://example.com" /> -->
     <link rel="icon" href="./images/logo_256.png" />
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -14,8 +15,8 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="manifest" href="./manifest.json" />
-    <meta name="#000000" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#000000" />
     <title>3D Color Picker</title>
   </head>
   <body>
@@ -135,7 +136,7 @@
     <script src="app.js"></script>
     <script>
       if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("./sw.js");
+        navigator.serviceWorker.register("/service-worker.js");
       }
     </script>
   </body>
