@@ -14,6 +14,8 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;900&display=swap"
       rel="stylesheet"
     />
+    <link rel="manifest" href="./manifest.json" />
+    <meta name="#000000" />
     <title>3D Color Picker</title>
   </head>
   <body>
@@ -131,6 +133,10 @@
       crossorigin="anonymous"
     />
     <script src="app.js"></script>
-    <!-- <script src="js/three.js"></script> -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("./sw.js");
+      }
+    </script>
   </body>
 </html>
