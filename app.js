@@ -1,7 +1,7 @@
 // service worker
 
 const registerSW = async () => {
-  if ("serviceWorker" in navigator && environment.production) {
+  if ("serviceWorker" in navigator) {
     try {
       await navigator.serviceWorker.register("./service-worker.js");
     } catch (e) {
