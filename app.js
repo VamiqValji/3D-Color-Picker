@@ -1,3 +1,17 @@
+// service worker
+
+const registerSW = async () => {
+  if ("serviceWorker" in navigator && environment.production) {
+    try {
+      await navigator.serviceWorker.register("./service-worker.js");
+    } catch (e) {
+      console.log(`SW registration failed`);
+    }
+  }
+};
+
+registerSW();
+
 //  ALWAYS NEEDS SCENE, RENDERER, AND CAMERA
 
 // global vars
