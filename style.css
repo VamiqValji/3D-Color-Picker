@@ -193,6 +193,24 @@ canvas {
   color: black;
 }
 
+#githubLogo {
+  padding: 0.5rem;
+  font-size: 3em;
+  margin: 0 auto 0 auto;
+  margin-top: 2rem;
+}
+
+#githubLogo:hover {
+  color: white;
+  background: black;
+}
+
+#githubLogo a {
+  list-style-type: none;
+  text-decoration: none;
+  color: white;
+}
+
 .ui .drop {
   transition: 0.25s;
 }
