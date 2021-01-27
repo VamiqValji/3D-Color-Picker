@@ -66,8 +66,8 @@ let starsBool = false;
 
 let starsDiv = document.getElementById("stars");
 
-let fullStar = `<i class="fas fa-star"></i>`;
-let emptyStar = `<i class="far fa-star"></i>`;
+let fullStar = `<i alt="Favorite" class="fas fa-star"></i>`;
+let emptyStar = `<i alt="Unfavorite" class="far fa-star"></i>`;
 
 function init() {
   //SETUP
@@ -434,9 +434,9 @@ gsap.to("#customAlert", { opacity: 0 });
 const customAlert = (value, copied = true) => {
   value = value.replace("0x", "");
   if (copied) {
-    customAlertHTML.innerHTML = `<li><span class='copy1'><i class="fas fa-copy"></i></span>${value} Copied!</li>`;
+    customAlertHTML.innerHTML = `<li><span class='copy1'><i alt="Copy" class="fas fa-copy"></i></span>${value} Copied!</li>`;
   } else {
-    customAlertHTML.innerHTML = `<li><span class='trash'><i class="fas fa-trash"></i></span>${value} Deleted!</li>`;
+    customAlertHTML.innerHTML = `<li><span class='trash'><i alt="Trash" class="fas fa-trash"></i></span>${value} Deleted!</li>`;
   }
   gsap.fromTo(
     "#customAlert",
