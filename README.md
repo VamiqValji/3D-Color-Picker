@@ -11,7 +11,8 @@ Projects's Purpose: To help the user find, save, and explore different colors th
 > UI Off
 > ![](readme_assets/UIoff.PNG)
 
-Current Version: 1.0 (Completed In About 12 Days)
+Current Version: 1.1
+- v1.0 (Completed In About 12 Days)
 
 This project may be further updated.
 
